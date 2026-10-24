@@ -37,8 +37,6 @@ jobs:
 
       - name: Package installer
         working-directory: chinese/primary/desktop
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx electron-builder --win --x64 --publish never
 
       - name: Upload artifact
