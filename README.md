@@ -1,5 +1,10 @@
 # 语文工作台 · 小学语文教师桌面工作台
 
+
+<video src="docs/media/demo.mp4" controls muted playsinline width="270"></video>
+
+> 视频打不开?直接下载 [docs/media/demo.mp4](docs/media/demo.mp4)
+
 完全本地运行(数据存本机 SQLite,不上云)的小学语文教师日常工作台:班级名册、教学进度、课堂点名/听写/背诵、批改记录、学生档案(一生一档)、成绩册、A4 打印中心、期末评语、AI 辅助(DeepSeek,可选)。
 
 ## 快速开始(教师)
@@ -48,3 +53,23 @@ npx electron-builder --win --x64
 ## 隐私
 
 学生数据仅存本机;AI 为可选功能,默认脱敏(不发送姓名);新闻为唯一主动联网功能且不携带任何本机数据。
+
+---
+
+## 📞 联系我
+
+**定制开发 · 建议 · 反馈**,扫码加我:
+
+<img src="docs/media/contact.jpg" width="270" alt="联系我"/>
+
+## ☕ 赞赏
+
+工具帮到了你的话,请我喝杯咖啡:
+
+<img src="docs/media/donate.jpg" width="270" alt="赞赏码"/>
+
+## 📱 关注我们
+
+| 小红书 **AI工作台** | 公众号 **见山知文** |
+|:---:|:---:|
+| <img src="docs/media/xhs.jpg" width="200"/> | <img src="docs/media/gzh.jpg" width="200"/> |
