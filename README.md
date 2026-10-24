@@ -9,11 +9,13 @@
 
 ## 快速开始(教师)
 
-1. 到 [Releases](../../releases) 下载最新的 `语文工作台 Setup xxx.exe`,双击安装
+1. 到 [Releases](../../releases) 下载安装包,双击安装:
+   - **`Setup-x.x.x-full-with-textbooks.exe`(推荐)**:完整版,**已内置 12 册统编版语文教材 PDF**(1–6 年级上下册,人教社),装完即用
+   - `Setup.x.x.x.exe`:精简版(81MB,不含教材 PDF)
 2. 打开应用 →「班级」建立班级、下载名册模板、导入学生
 3. (可选)「设置」填入 DeepSeek API Key 启用 AI 功能
 
-> Release 安装包为**零教材版**(教材 PDF 有版权,不随公共仓库分发)。如需内置教材 PDF 阅读:安装后在应用目录的 `resources/textbooks/` 放入 PDF,并按 `app/textbooks-manifest.json` 的结构登记。
+> 本项目为教师个人教学用途,非商业分发;教材 PDF 版权归人民教育出版社所有。
 
 ## 从源码运行
 
