@@ -1,0 +1,23 @@
+# 依赖与构建产物(任意层级)
+**/node_modules/
+**/dist/
+**/__pycache__/
+*.pyc
+
+# 本机数据(用户私有,绝不入库)
+**/data/
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+
+# 教材 PDF(版权文件,不入公共仓库;本地构建自行放置)
+**/textbooks/*.pdf
+**/resources/textbooks/*.pdf
+
+# 密钥与临时文件
+**/.key
+**/.base
+**/.env
+*.log
+.tmp-*/
+D:/Temp/

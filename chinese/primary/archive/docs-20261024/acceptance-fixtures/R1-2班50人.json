@@ -1,0 +1,3778 @@
+{
+  "format": "teacher-workbench-r1",
+  "version": 1,
+  "exportedAt": "2026-10-23T00:00:00+08:00",
+  "state": {
+    "version": 1,
+    "classes": [
+      {
+        "id": "fixture-class-a",
+        "name": "验收三（1）班",
+        "grade": 3,
+        "term": "上册",
+        "publisher": "待绑定教材",
+        "editionYear": "",
+        "bookId": "",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-class-b",
+        "name": "验收四（2）班",
+        "grade": 4,
+        "term": "上册",
+        "publisher": "验收出版社",
+        "editionYear": "2026",
+        "bookId": "fixture-book-b",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      }
+    ],
+    "selectedClassId": "fixture-class-a",
+    "students": [
+      {
+        "id": "fixture-A-student-01",
+        "classId": "fixture-class-a",
+        "no": "01",
+        "name": "A01号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-02",
+        "classId": "fixture-class-a",
+        "no": "02",
+        "name": "A02号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-03",
+        "classId": "fixture-class-a",
+        "no": "03",
+        "name": "A03号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-04",
+        "classId": "fixture-class-a",
+        "no": "04",
+        "name": "A04号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-05",
+        "classId": "fixture-class-a",
+        "no": "05",
+        "name": "A05号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-06",
+        "classId": "fixture-class-a",
+        "no": "06",
+        "name": "A06号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-07",
+        "classId": "fixture-class-a",
+        "no": "07",
+        "name": "A07号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-08",
+        "classId": "fixture-class-a",
+        "no": "08",
+        "name": "A08号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-09",
+        "classId": "fixture-class-a",
+        "no": "09",
+        "name": "A09号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-10",
+        "classId": "fixture-class-a",
+        "no": "10",
+        "name": "A10号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-11",
+        "classId": "fixture-class-a",
+        "no": "11",
+        "name": "A11号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-12",
+        "classId": "fixture-class-a",
+        "no": "12",
+        "name": "A12号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-13",
+        "classId": "fixture-class-a",
+        "no": "13",
+        "name": "A13号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-14",
+        "classId": "fixture-class-a",
+        "no": "14",
+        "name": "A14号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-15",
+        "classId": "fixture-class-a",
+        "no": "15",
+        "name": "A15号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-16",
+        "classId": "fixture-class-a",
+        "no": "16",
+        "name": "A16号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-17",
+        "classId": "fixture-class-a",
+        "no": "17",
+        "name": "A17号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-18",
+        "classId": "fixture-class-a",
+        "no": "18",
+        "name": "A18号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-19",
+        "classId": "fixture-class-a",
+        "no": "19",
+        "name": "A19号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-20",
+        "classId": "fixture-class-a",
+        "no": "20",
+        "name": "A20号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-21",
+        "classId": "fixture-class-a",
+        "no": "21",
+        "name": "A21号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-22",
+        "classId": "fixture-class-a",
+        "no": "22",
+        "name": "A22号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-23",
+        "classId": "fixture-class-a",
+        "no": "23",
+        "name": "A23号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-24",
+        "classId": "fixture-class-a",
+        "no": "24",
+        "name": "A24号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-25",
+        "classId": "fixture-class-a",
+        "no": "25",
+        "name": "A25号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-26",
+        "classId": "fixture-class-a",
+        "no": "26",
+        "name": "A26号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-27",
+        "classId": "fixture-class-a",
+        "no": "27",
+        "name": "A27号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-28",
+        "classId": "fixture-class-a",
+        "no": "28",
+        "name": "A28号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-29",
+        "classId": "fixture-class-a",
+        "no": "29",
+        "name": "A29号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-30",
+        "classId": "fixture-class-a",
+        "no": "30",
+        "name": "A30号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-31",
+        "classId": "fixture-class-a",
+        "no": "31",
+        "name": "A31号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-32",
+        "classId": "fixture-class-a",
+        "no": "32",
+        "name": "A32号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-33",
+        "classId": "fixture-class-a",
+        "no": "33",
+        "name": "A33号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-34",
+        "classId": "fixture-class-a",
+        "no": "34",
+        "name": "A34号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-35",
+        "classId": "fixture-class-a",
+        "no": "35",
+        "name": "A35号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-36",
+        "classId": "fixture-class-a",
+        "no": "36",
+        "name": "A36号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-37",
+        "classId": "fixture-class-a",
+        "no": "37",
+        "name": "A37号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-38",
+        "classId": "fixture-class-a",
+        "no": "38",
+        "name": "A38号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-39",
+        "classId": "fixture-class-a",
+        "no": "39",
+        "name": "A39号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-40",
+        "classId": "fixture-class-a",
+        "no": "40",
+        "name": "A40号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-41",
+        "classId": "fixture-class-a",
+        "no": "41",
+        "name": "A41号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-42",
+        "classId": "fixture-class-a",
+        "no": "42",
+        "name": "A42号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-43",
+        "classId": "fixture-class-a",
+        "no": "43",
+        "name": "A43号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-44",
+        "classId": "fixture-class-a",
+        "no": "44",
+        "name": "A44号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-45",
+        "classId": "fixture-class-a",
+        "no": "45",
+        "name": "A45号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-46",
+        "classId": "fixture-class-a",
+        "no": "46",
+        "name": "A46号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-47",
+        "classId": "fixture-class-a",
+        "no": "47",
+        "name": "A47号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-48",
+        "classId": "fixture-class-a",
+        "no": "48",
+        "name": "A48号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-49",
+        "classId": "fixture-class-a",
+        "no": "49",
+        "name": "A49号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-student-50",
+        "classId": "fixture-class-a",
+        "no": "50",
+        "name": "A50号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-01",
+        "classId": "fixture-class-b",
+        "no": "01",
+        "name": "B01号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-02",
+        "classId": "fixture-class-b",
+        "no": "02",
+        "name": "B02号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-03",
+        "classId": "fixture-class-b",
+        "no": "03",
+        "name": "B03号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-04",
+        "classId": "fixture-class-b",
+        "no": "04",
+        "name": "B04号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-05",
+        "classId": "fixture-class-b",
+        "no": "05",
+        "name": "B05号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-06",
+        "classId": "fixture-class-b",
+        "no": "06",
+        "name": "B06号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-07",
+        "classId": "fixture-class-b",
+        "no": "07",
+        "name": "B07号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-08",
+        "classId": "fixture-class-b",
+        "no": "08",
+        "name": "B08号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-09",
+        "classId": "fixture-class-b",
+        "no": "09",
+        "name": "B09号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-10",
+        "classId": "fixture-class-b",
+        "no": "10",
+        "name": "B10号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-11",
+        "classId": "fixture-class-b",
+        "no": "11",
+        "name": "B11号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-12",
+        "classId": "fixture-class-b",
+        "no": "12",
+        "name": "B12号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-13",
+        "classId": "fixture-class-b",
+        "no": "13",
+        "name": "B13号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-14",
+        "classId": "fixture-class-b",
+        "no": "14",
+        "name": "B14号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-15",
+        "classId": "fixture-class-b",
+        "no": "15",
+        "name": "B15号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-16",
+        "classId": "fixture-class-b",
+        "no": "16",
+        "name": "B16号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-17",
+        "classId": "fixture-class-b",
+        "no": "17",
+        "name": "B17号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-18",
+        "classId": "fixture-class-b",
+        "no": "18",
+        "name": "B18号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-19",
+        "classId": "fixture-class-b",
+        "no": "19",
+        "name": "B19号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-20",
+        "classId": "fixture-class-b",
+        "no": "20",
+        "name": "B20号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-21",
+        "classId": "fixture-class-b",
+        "no": "21",
+        "name": "B21号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-22",
+        "classId": "fixture-class-b",
+        "no": "22",
+        "name": "B22号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-23",
+        "classId": "fixture-class-b",
+        "no": "23",
+        "name": "B23号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-24",
+        "classId": "fixture-class-b",
+        "no": "24",
+        "name": "B24号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-25",
+        "classId": "fixture-class-b",
+        "no": "25",
+        "name": "B25号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-26",
+        "classId": "fixture-class-b",
+        "no": "26",
+        "name": "B26号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-27",
+        "classId": "fixture-class-b",
+        "no": "27",
+        "name": "B27号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-28",
+        "classId": "fixture-class-b",
+        "no": "28",
+        "name": "B28号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-29",
+        "classId": "fixture-class-b",
+        "no": "29",
+        "name": "B29号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-30",
+        "classId": "fixture-class-b",
+        "no": "30",
+        "name": "B30号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-31",
+        "classId": "fixture-class-b",
+        "no": "31",
+        "name": "B31号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-32",
+        "classId": "fixture-class-b",
+        "no": "32",
+        "name": "B32号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-33",
+        "classId": "fixture-class-b",
+        "no": "33",
+        "name": "B33号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-34",
+        "classId": "fixture-class-b",
+        "no": "34",
+        "name": "B34号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-35",
+        "classId": "fixture-class-b",
+        "no": "35",
+        "name": "B35号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-36",
+        "classId": "fixture-class-b",
+        "no": "36",
+        "name": "B36号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-37",
+        "classId": "fixture-class-b",
+        "no": "37",
+        "name": "B37号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-38",
+        "classId": "fixture-class-b",
+        "no": "38",
+        "name": "B38号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-39",
+        "classId": "fixture-class-b",
+        "no": "39",
+        "name": "B39号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-40",
+        "classId": "fixture-class-b",
+        "no": "40",
+        "name": "B40号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-41",
+        "classId": "fixture-class-b",
+        "no": "41",
+        "name": "B41号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-42",
+        "classId": "fixture-class-b",
+        "no": "42",
+        "name": "B42号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-43",
+        "classId": "fixture-class-b",
+        "no": "43",
+        "name": "B43号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-44",
+        "classId": "fixture-class-b",
+        "no": "44",
+        "name": "B44号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-45",
+        "classId": "fixture-class-b",
+        "no": "45",
+        "name": "B45号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-46",
+        "classId": "fixture-class-b",
+        "no": "46",
+        "name": "B46号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-47",
+        "classId": "fixture-class-b",
+        "no": "47",
+        "name": "B47号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-48",
+        "classId": "fixture-class-b",
+        "no": "48",
+        "name": "B48号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-49",
+        "classId": "fixture-class-b",
+        "no": "49",
+        "name": "B49号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-student-50",
+        "classId": "fixture-class-b",
+        "no": "50",
+        "name": "B50号",
+        "createdAt": "2026-10-23T00:00:00+08:00"
+      }
+    ],
+    "progress": [
+      {
+        "id": "fixture-A-progress-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "1",
+        "title": "验收课次 1",
+        "planDate": "2026-04-06",
+        "actualDate": "2026-04-06",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "2",
+        "title": "验收课次 2",
+        "planDate": "2026-04-13",
+        "actualDate": "2026-04-13",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "3",
+        "title": "验收课次 3",
+        "planDate": "2026-04-20",
+        "actualDate": "2026-04-20",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-4",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "4",
+        "title": "验收课次 4",
+        "planDate": "2026-04-27",
+        "actualDate": "2026-04-27",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-5",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "5",
+        "title": "验收课次 5",
+        "planDate": "2026-05-04",
+        "actualDate": "2026-05-04",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-6",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "6",
+        "title": "验收课次 6",
+        "planDate": "2026-05-11",
+        "actualDate": "2026-05-11",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-7",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "7",
+        "title": "验收课次 7",
+        "planDate": "2026-05-18",
+        "actualDate": "2026-05-18",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-8",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "8",
+        "title": "验收课次 8",
+        "planDate": "2026-05-25",
+        "actualDate": "2026-05-25",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-9",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "9",
+        "title": "验收课次 9",
+        "planDate": "2026-06-01",
+        "actualDate": "2026-06-01",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-10",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "10",
+        "title": "验收课次 10",
+        "planDate": "2026-06-08",
+        "actualDate": "2026-06-08",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-11",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "11",
+        "title": "验收课次 11",
+        "planDate": "2026-06-15",
+        "actualDate": "2026-06-15",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-12",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "12",
+        "title": "验收课次 12",
+        "planDate": "2026-06-22",
+        "actualDate": "2026-06-22",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-13",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "13",
+        "title": "验收课次 13",
+        "planDate": "2026-06-29",
+        "actualDate": "2026-06-29",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-14",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "14",
+        "title": "验收课次 14",
+        "planDate": "2026-07-06",
+        "actualDate": "2026-07-06",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-15",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "15",
+        "title": "验收课次 15",
+        "planDate": "2026-07-13",
+        "actualDate": "2026-07-13",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-16",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "16",
+        "title": "验收课次 16",
+        "planDate": "2026-07-20",
+        "actualDate": "2026-07-20",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-17",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "17",
+        "title": "验收课次 17",
+        "planDate": "2026-07-27",
+        "actualDate": "2026-07-27",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-18",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "18",
+        "title": "验收课次 18",
+        "planDate": "2026-08-03",
+        "actualDate": "2026-08-03",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-19",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "19",
+        "title": "验收课次 19",
+        "planDate": "2026-08-10",
+        "actualDate": "2026-08-10",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-progress-20",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "20",
+        "title": "验收课次 20",
+        "planDate": "2026-08-17",
+        "actualDate": "",
+        "status": "未开始",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "1",
+        "title": "验收课次 1",
+        "planDate": "2026-04-06",
+        "actualDate": "2026-04-06",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "2",
+        "title": "验收课次 2",
+        "planDate": "2026-04-13",
+        "actualDate": "2026-04-13",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "3",
+        "title": "验收课次 3",
+        "planDate": "2026-04-20",
+        "actualDate": "2026-04-20",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-4",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "4",
+        "title": "验收课次 4",
+        "planDate": "2026-04-27",
+        "actualDate": "2026-04-27",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-5",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "5",
+        "title": "验收课次 5",
+        "planDate": "2026-05-04",
+        "actualDate": "2026-05-04",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-6",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "6",
+        "title": "验收课次 6",
+        "planDate": "2026-05-11",
+        "actualDate": "2026-05-11",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-7",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "7",
+        "title": "验收课次 7",
+        "planDate": "2026-05-18",
+        "actualDate": "2026-05-18",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-8",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "8",
+        "title": "验收课次 8",
+        "planDate": "2026-05-25",
+        "actualDate": "2026-05-25",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-9",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "9",
+        "title": "验收课次 9",
+        "planDate": "2026-06-01",
+        "actualDate": "2026-06-01",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-10",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "10",
+        "title": "验收课次 10",
+        "planDate": "2026-06-08",
+        "actualDate": "2026-06-08",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-11",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "11",
+        "title": "验收课次 11",
+        "planDate": "2026-06-15",
+        "actualDate": "2026-06-15",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-12",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "12",
+        "title": "验收课次 12",
+        "planDate": "2026-06-22",
+        "actualDate": "2026-06-22",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-13",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "13",
+        "title": "验收课次 13",
+        "planDate": "2026-06-29",
+        "actualDate": "2026-06-29",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-14",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "14",
+        "title": "验收课次 14",
+        "planDate": "2026-07-06",
+        "actualDate": "2026-07-06",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-15",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "15",
+        "title": "验收课次 15",
+        "planDate": "2026-07-13",
+        "actualDate": "2026-07-13",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-16",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "16",
+        "title": "验收课次 16",
+        "planDate": "2026-07-20",
+        "actualDate": "2026-07-20",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-17",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "17",
+        "title": "验收课次 17",
+        "planDate": "2026-07-27",
+        "actualDate": "2026-07-27",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-18",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "18",
+        "title": "验收课次 18",
+        "planDate": "2026-08-03",
+        "actualDate": "2026-08-03",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-19",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "19",
+        "title": "验收课次 19",
+        "planDate": "2026-08-10",
+        "actualDate": "2026-08-10",
+        "status": "已上课",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-progress-20",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "20",
+        "title": "验收课次 20",
+        "planDate": "2026-08-17",
+        "actualDate": "",
+        "status": "未开始",
+        "note": "匿名验收数据",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      }
+    ],
+    "preps": [],
+    "dictations": [
+      {
+        "id": "fixture-A-dictation",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "20",
+        "title": "验收词语听写",
+        "date": "2026-10-23",
+        "participantCount": 50,
+        "markedCount": 40,
+        "words": [
+          {
+            "w": "认真",
+            "p": "rèn zhēn"
+          },
+          {
+            "w": "继续",
+            "p": "jì xù"
+          }
+        ],
+        "wordErrors": {
+          "认真": 8,
+          "继续": 5
+        },
+        "studentMarks": {},
+        "summary": "匿名测试记录",
+        "measures": "下次课复查",
+        "status": "待批改",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-dictation",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "20",
+        "title": "验收词语听写",
+        "date": "2026-10-23",
+        "participantCount": 50,
+        "markedCount": 40,
+        "words": [
+          {
+            "w": "认真",
+            "p": "rèn zhēn"
+          },
+          {
+            "w": "继续",
+            "p": "jì xù"
+          }
+        ],
+        "wordErrors": {
+          "认真": 8,
+          "继续": 5
+        },
+        "studentMarks": {},
+        "summary": "匿名测试记录",
+        "measures": "下次课复查",
+        "status": "待批改",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      }
+    ],
+    "assignments": [
+      {
+        "id": "fixture-A-assignment-1-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "1",
+        "date": "2026-04-06",
+        "content": "验收作业 第1周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-1-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "1",
+        "date": "2026-04-08",
+        "content": "验收作业 第1周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-1-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "1",
+        "date": "2026-04-10",
+        "content": "验收作业 第1周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-2-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "2",
+        "date": "2026-04-13",
+        "content": "验收作业 第2周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-2-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "2",
+        "date": "2026-04-15",
+        "content": "验收作业 第2周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-2-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "2",
+        "date": "2026-04-17",
+        "content": "验收作业 第2周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-3-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "3",
+        "date": "2026-04-20",
+        "content": "验收作业 第3周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-3-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "3",
+        "date": "2026-04-22",
+        "content": "验收作业 第3周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-3-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "3",
+        "date": "2026-04-24",
+        "content": "验收作业 第3周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-4-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "4",
+        "date": "2026-04-27",
+        "content": "验收作业 第4周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-4-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "4",
+        "date": "2026-04-29",
+        "content": "验收作业 第4周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-4-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "4",
+        "date": "2026-05-01",
+        "content": "验收作业 第4周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-5-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "5",
+        "date": "2026-05-04",
+        "content": "验收作业 第5周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-5-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "5",
+        "date": "2026-05-06",
+        "content": "验收作业 第5周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-5-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "5",
+        "date": "2026-05-08",
+        "content": "验收作业 第5周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-6-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "6",
+        "date": "2026-05-11",
+        "content": "验收作业 第6周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-6-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "6",
+        "date": "2026-05-13",
+        "content": "验收作业 第6周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-6-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "6",
+        "date": "2026-05-15",
+        "content": "验收作业 第6周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-7-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "7",
+        "date": "2026-05-18",
+        "content": "验收作业 第7周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-7-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "7",
+        "date": "2026-05-20",
+        "content": "验收作业 第7周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-7-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "7",
+        "date": "2026-05-22",
+        "content": "验收作业 第7周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-8-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "8",
+        "date": "2026-05-25",
+        "content": "验收作业 第8周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-8-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "8",
+        "date": "2026-05-27",
+        "content": "验收作业 第8周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-8-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "8",
+        "date": "2026-05-29",
+        "content": "验收作业 第8周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-9-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "9",
+        "date": "2026-06-01",
+        "content": "验收作业 第9周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-9-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "9",
+        "date": "2026-06-03",
+        "content": "验收作业 第9周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-9-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "9",
+        "date": "2026-06-05",
+        "content": "验收作业 第9周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-10-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "10",
+        "date": "2026-06-08",
+        "content": "验收作业 第10周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-10-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "10",
+        "date": "2026-06-10",
+        "content": "验收作业 第10周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-10-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "10",
+        "date": "2026-06-12",
+        "content": "验收作业 第10周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-11-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "11",
+        "date": "2026-06-15",
+        "content": "验收作业 第11周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-11-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "11",
+        "date": "2026-06-17",
+        "content": "验收作业 第11周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-11-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "11",
+        "date": "2026-06-19",
+        "content": "验收作业 第11周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-12-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "12",
+        "date": "2026-06-22",
+        "content": "验收作业 第12周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-12-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "12",
+        "date": "2026-06-24",
+        "content": "验收作业 第12周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-12-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "12",
+        "date": "2026-06-26",
+        "content": "验收作业 第12周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-13-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "13",
+        "date": "2026-06-29",
+        "content": "验收作业 第13周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-13-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "13",
+        "date": "2026-07-01",
+        "content": "验收作业 第13周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-13-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "13",
+        "date": "2026-07-03",
+        "content": "验收作业 第13周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-14-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "14",
+        "date": "2026-07-06",
+        "content": "验收作业 第14周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-14-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "14",
+        "date": "2026-07-08",
+        "content": "验收作业 第14周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-14-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "14",
+        "date": "2026-07-10",
+        "content": "验收作业 第14周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-15-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "15",
+        "date": "2026-07-13",
+        "content": "验收作业 第15周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-15-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "15",
+        "date": "2026-07-15",
+        "content": "验收作业 第15周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-15-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "15",
+        "date": "2026-07-17",
+        "content": "验收作业 第15周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-16-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "16",
+        "date": "2026-07-20",
+        "content": "验收作业 第16周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-16-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "16",
+        "date": "2026-07-22",
+        "content": "验收作业 第16周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-16-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "16",
+        "date": "2026-07-24",
+        "content": "验收作业 第16周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-17-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "17",
+        "date": "2026-07-27",
+        "content": "验收作业 第17周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-17-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "17",
+        "date": "2026-07-29",
+        "content": "验收作业 第17周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-17-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "17",
+        "date": "2026-07-31",
+        "content": "验收作业 第17周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-18-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "18",
+        "date": "2026-08-03",
+        "content": "验收作业 第18周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-18-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "18",
+        "date": "2026-08-05",
+        "content": "验收作业 第18周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-18-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "18",
+        "date": "2026-08-07",
+        "content": "验收作业 第18周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-19-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "19",
+        "date": "2026-08-10",
+        "content": "验收作业 第19周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-19-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "19",
+        "date": "2026-08-12",
+        "content": "验收作业 第19周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-19-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "19",
+        "date": "2026-08-14",
+        "content": "验收作业 第19周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-20-1",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "20",
+        "date": "2026-08-17",
+        "content": "验收作业 第20周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-20-2",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "20",
+        "date": "2026-08-19",
+        "content": "验收作业 第20周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-A-assignment-20-3",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "lessonNo": "20",
+        "date": "2026-08-21",
+        "content": "验收作业 第20周 第3次",
+        "participantCount": 50,
+        "markedCount": 42,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-1-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "1",
+        "date": "2026-04-06",
+        "content": "验收作业 第1周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-1-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "1",
+        "date": "2026-04-08",
+        "content": "验收作业 第1周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-1-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "1",
+        "date": "2026-04-10",
+        "content": "验收作业 第1周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-2-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "2",
+        "date": "2026-04-13",
+        "content": "验收作业 第2周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-2-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "2",
+        "date": "2026-04-15",
+        "content": "验收作业 第2周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-2-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "2",
+        "date": "2026-04-17",
+        "content": "验收作业 第2周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-3-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "3",
+        "date": "2026-04-20",
+        "content": "验收作业 第3周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-3-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "3",
+        "date": "2026-04-22",
+        "content": "验收作业 第3周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-3-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "3",
+        "date": "2026-04-24",
+        "content": "验收作业 第3周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-4-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "4",
+        "date": "2026-04-27",
+        "content": "验收作业 第4周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-4-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "4",
+        "date": "2026-04-29",
+        "content": "验收作业 第4周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-4-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "4",
+        "date": "2026-05-01",
+        "content": "验收作业 第4周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-5-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "5",
+        "date": "2026-05-04",
+        "content": "验收作业 第5周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-5-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "5",
+        "date": "2026-05-06",
+        "content": "验收作业 第5周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-5-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "5",
+        "date": "2026-05-08",
+        "content": "验收作业 第5周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-6-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "6",
+        "date": "2026-05-11",
+        "content": "验收作业 第6周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-6-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "6",
+        "date": "2026-05-13",
+        "content": "验收作业 第6周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-6-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "6",
+        "date": "2026-05-15",
+        "content": "验收作业 第6周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-7-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "7",
+        "date": "2026-05-18",
+        "content": "验收作业 第7周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-7-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "7",
+        "date": "2026-05-20",
+        "content": "验收作业 第7周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-7-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "7",
+        "date": "2026-05-22",
+        "content": "验收作业 第7周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-8-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "8",
+        "date": "2026-05-25",
+        "content": "验收作业 第8周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-8-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "8",
+        "date": "2026-05-27",
+        "content": "验收作业 第8周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-8-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "8",
+        "date": "2026-05-29",
+        "content": "验收作业 第8周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-9-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "9",
+        "date": "2026-06-01",
+        "content": "验收作业 第9周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-9-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "9",
+        "date": "2026-06-03",
+        "content": "验收作业 第9周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-9-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "9",
+        "date": "2026-06-05",
+        "content": "验收作业 第9周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-10-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "10",
+        "date": "2026-06-08",
+        "content": "验收作业 第10周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-10-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "10",
+        "date": "2026-06-10",
+        "content": "验收作业 第10周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-10-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "10",
+        "date": "2026-06-12",
+        "content": "验收作业 第10周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-11-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "11",
+        "date": "2026-06-15",
+        "content": "验收作业 第11周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-11-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "11",
+        "date": "2026-06-17",
+        "content": "验收作业 第11周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-11-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "11",
+        "date": "2026-06-19",
+        "content": "验收作业 第11周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-12-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "12",
+        "date": "2026-06-22",
+        "content": "验收作业 第12周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-12-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "12",
+        "date": "2026-06-24",
+        "content": "验收作业 第12周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-12-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "12",
+        "date": "2026-06-26",
+        "content": "验收作业 第12周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-13-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "13",
+        "date": "2026-06-29",
+        "content": "验收作业 第13周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-13-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "13",
+        "date": "2026-07-01",
+        "content": "验收作业 第13周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-13-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "13",
+        "date": "2026-07-03",
+        "content": "验收作业 第13周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-14-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "14",
+        "date": "2026-07-06",
+        "content": "验收作业 第14周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-14-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "14",
+        "date": "2026-07-08",
+        "content": "验收作业 第14周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-14-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "14",
+        "date": "2026-07-10",
+        "content": "验收作业 第14周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-15-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "15",
+        "date": "2026-07-13",
+        "content": "验收作业 第15周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-15-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "15",
+        "date": "2026-07-15",
+        "content": "验收作业 第15周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-15-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "15",
+        "date": "2026-07-17",
+        "content": "验收作业 第15周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-16-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "16",
+        "date": "2026-07-20",
+        "content": "验收作业 第16周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-16-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "16",
+        "date": "2026-07-22",
+        "content": "验收作业 第16周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-16-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "16",
+        "date": "2026-07-24",
+        "content": "验收作业 第16周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-17-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "17",
+        "date": "2026-07-27",
+        "content": "验收作业 第17周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-17-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "17",
+        "date": "2026-07-29",
+        "content": "验收作业 第17周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-17-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "17",
+        "date": "2026-07-31",
+        "content": "验收作业 第17周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-18-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "18",
+        "date": "2026-08-03",
+        "content": "验收作业 第18周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-18-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "18",
+        "date": "2026-08-05",
+        "content": "验收作业 第18周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-18-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "18",
+        "date": "2026-08-07",
+        "content": "验收作业 第18周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-19-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "19",
+        "date": "2026-08-10",
+        "content": "验收作业 第19周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-19-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "19",
+        "date": "2026-08-12",
+        "content": "验收作业 第19周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-19-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "19",
+        "date": "2026-08-14",
+        "content": "验收作业 第19周 第3次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-20-1",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "20",
+        "date": "2026-08-17",
+        "content": "验收作业 第20周 第1次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-20-2",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "20",
+        "date": "2026-08-19",
+        "content": "验收作业 第20周 第2次",
+        "participantCount": 50,
+        "markedCount": 50,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-assignment-20-3",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "lessonNo": "20",
+        "date": "2026-08-21",
+        "content": "验收作业 第20周 第3次",
+        "participantCount": 50,
+        "markedCount": 42,
+        "summary": "匿名测试记录",
+        "issues": [
+          {
+            "tag": "字词",
+            "text": "请复查同音字"
+          }
+        ],
+        "measures": "下次课讲评",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      }
+    ],
+    "followups": [
+      {
+        "id": "fixture-A-followup",
+        "classId": "fixture-class-a",
+        "bookId": "",
+        "sourceType": "dictation",
+        "sourceId": "fixture-A-dictation",
+        "kind": "复查",
+        "title": "验收听写复查",
+        "dueDate": "2026-10-23",
+        "status": "待办",
+        "studentIds": [],
+        "result": "",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      },
+      {
+        "id": "fixture-B-followup",
+        "classId": "fixture-class-b",
+        "bookId": "fixture-book-b",
+        "sourceType": "dictation",
+        "sourceId": "fixture-B-dictation",
+        "kind": "复查",
+        "title": "验收听写复查",
+        "dueDate": "2026-10-23",
+        "status": "待办",
+        "studentIds": [],
+        "result": "",
+        "createdAt": "2026-10-23T00:00:00+08:00",
+        "updatedAt": "2026-10-23T00:00:00+08:00"
+      }
+    ],
+    "tasks": [],
+    "customBooks": [
+      {
+        "bookId": "fixture-book-b",
+        "publisher": "验收出版社",
+        "grade": 4,
+        "term": "上册",
+        "editionYear": "2026",
+        "title": "验收教材（无 PDF）",
+        "file": "",
+        "status": "待导入"
+      }
+    ],
+    "legacyWrong": [],
+    "bankOverride": {},
+    "settings": {
+      "ai": {
+        "key": "",
+        "base": "https://api.deepseek.com",
+        "model": "deepseek-flash"
+      },
+      "voice": ""
+    },
+    "legacyLessonNo": null,
+    "legacyPicks": {},
+    "createdAt": "2026-10-23T00:00:00+08:00"
+  }
+}

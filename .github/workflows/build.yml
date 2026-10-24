@@ -1,0 +1,56 @@
+name: Build Windows Installer
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install desktop dependencies
+        working-directory: chinese/primary/desktop
+        run: npm install
+
+      - name: Build renderer (CI mode, no bundled textbooks)
+        working-directory: chinese/primary/app
+        env:
+          WB_CI: '1'
+        run: python build.py
+
+      - name: Sync renderer into desktop
+        shell: bash
+        run: |
+          cp chinese/primary/app/index.html chinese/primary/desktop/src/renderer/index.html
+          cp chinese/primary/app/src/style.css chinese/primary/desktop/src/renderer/style.css
+
+      - name: Package installer
+        working-directory: chinese/primary/desktop
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx electron-builder --win --x64
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-installer
+          path: chinese/primary/desktop/dist/*.exe
+
+      - name: Attach to Release (on tag)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: chinese/primary/desktop/dist/*.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

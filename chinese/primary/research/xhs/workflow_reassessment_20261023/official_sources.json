@@ -1,0 +1,37 @@
+[
+  {
+    "id": "O1",
+    "title": "教育部：进一步减轻中小学教师非教育教学负担若干措施",
+    "url": "https://www.moe.gov.cn/srcsite/A10/s7058/202511/t20251107_1419596.html",
+    "type": "官方文件",
+    "note": "反对强制上传留痕、重复填报；不据此判断所有教学记录均无价值。"
+  },
+  {
+    "id": "O2",
+    "title": "教育部：加强义务教育学校作业管理的通知",
+    "url": "https://www.moe.gov.cn/srcsite/A06/s3321/202104/t20210425_528077.html",
+    "type": "官方文件",
+    "note": "检索摘要可读，全文打开超时；只引用摘要支持的一二年级家庭书面作业及教师批改职责。"
+  },
+  {
+    "id": "O3",
+    "title": "希沃帮助中心：添加备课资料与集体备课",
+    "url": "https://help.seewo.com/school/pMQg9i83RN",
+    "type": "厂商操作文档",
+    "note": "教材章节关联课件、教案与多媒体；只证明产品交互能力，不证明节时效果。"
+  },
+  {
+    "id": "O4",
+    "title": "深圳市教育局：国家中小学智慧教育平台数字化教学支持",
+    "url": "https://szeb.sz.gov.cn/home/gzcy/ywzsk/fwxx/jyxxh/content/post_11080956.html",
+    "type": "官方功能介绍",
+    "note": "个人资源库支持备授课、习题收藏与组卷。"
+  },
+  {
+    "id": "O5",
+    "title": "科大讯飞数智作业",
+    "url": "https://edu.iflytek.com/solution/school/smart-assignments",
+    "type": "厂商方案",
+    "note": "智能批阅依赖批阅机、识别和作业处理体系；未验证准确率或实际节时。"
+  }
+]

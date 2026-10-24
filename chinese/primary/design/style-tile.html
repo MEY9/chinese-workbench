@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>案头纸墨 · 材质小样</title>
+<style>
+:root{
+  --paper:#F5F1E6; --sheet:#FCFAF3; --ink:#2A2620; --ink2:#6B6353;
+  --line:#E3DBC8; --zhu:#B5453C; --dian:#3D5A6C; --tai:#6B7F4E; --zhe:#A9744F;
+  --f-ui:"PingFang SC","Microsoft YaHei UI","Segoe UI",sans-serif;
+  --f-kai:"Kaiti SC","KaiTi","STKaiti",serif;
+  --f-song:"Songti SC","SimSun",serif;
+  --shadow-card:0 1px 2px rgba(84,66,38,.10),0 10px 30px rgba(84,66,38,.08);
+  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+body.night{
+  --paper:#211E19; --sheet:#2B2721; --ink:#D9D0BC; --ink2:#95897329; --ink2:#998D76;
+  --line:#3D372E; --zhu:#C9584E; --dian:#7C9AAC; --tai:#8FA06E; --zhe:#BE8B62;
+  --shadow-card:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.30);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.7;transition:background .25s,color .25s}
+/* 全局纸纹颗粒 */
+body::after{content:"";position:fixed;inset:0;background-image:var(--grain);opacity:.35;pointer-events:none;mix-blend-mode:multiply;z-index:999}
+body.night::after{opacity:.22;mix-blend-mode:soft-light}
+::selection{background:var(--zhu);color:#F7EFE0}
+
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px}
+
+/* ===== 笔杆顶栏 ===== */
+header{position:sticky;top:0;z-index:50;background:linear-gradient(var(--paper),var(--paper));border-bottom:1px solid var(--line);backdrop-filter:none}
+.hbar{max-width:960px;margin:0 auto;padding:8px 24px;display:flex;align-items:center;gap:14px}
+.brand{display:flex;align-items:center;gap:10px}
+h1{font-family:var(--f-kai);font-size:19px;font-weight:600;letter-spacing:.06em}
+.tabs{display:flex;gap:6px;margin-left:auto;align-items:flex-end}
+.tab{padding:5px 13px;border:1px solid var(--line);border-bottom:none;border-radius:6px 6px 0 0;background:transparent;color:var(--ink2);font-size:13px;cursor:pointer;position:relative;top:1px;transition:all .15s ease-out}
+.tab:hover{color:var(--ink)}
+.tab.on{background:var(--sheet);color:var(--ink);font-weight:600;border-color:var(--line);box-shadow:0 -2px 6px rgba(84,66,38,.06)}
+.iconbtn{border:1px solid var(--line);background:var(--sheet);color:var(--ink2);width:32px;height:32px;border-radius:6px;cursor:pointer;font-size:14px;transition:all .15s}
+.iconbtn:hover{color:var(--zhu);border-color:var(--zhu)}
+kbd{font-family:var(--f-ui);font-size:11px;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:1px 5px;color:var(--ink2);background:var(--sheet)}
+
+/* ===== 章节标题(书脊式竖排在左) ===== */
+section{margin-top:56px;display:grid;grid-template-columns:34px 1fr;gap:18px}
+.spine{writing-mode:vertical-rl;font-family:var(--f-kai);font-size:13px;letter-spacing:.5em;color:var(--ink2);border-left:1px solid var(--line);padding-left:10px;user-select:none}
+section>div{min-width:0}
+h2{font-family:var(--f-kai);font-size:22px;font-weight:600;margin-bottom:4px}
+.sub{color:var(--ink2);font-size:13px;margin-bottom:20px}
+
+/* ===== 纸张卡片 ===== */
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:5px;box-shadow:var(--shadow-card);padding:22px 24px;transition:transform .16s ease-out,box-shadow .16s ease-out}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:760px){.g2,.g3{grid-template-columns:1fr}}
+
+/* ===== 印章 ===== */
+.seal{display:inline-flex;align-items:center;justify-content:center;font-family:var(--f-kai);font-weight:700;color:#F7EFE0;background:radial-gradient(circle at 32% 28%,#C9584E,#A93B32 72%);border-radius:9px;box-shadow:inset 0 0 0 2.5px rgba(247,239,224,.5),inset 0 0 10px rgba(90,20,14,.45),0 2px 6px rgba(90,20,14,.25);transform:rotate(-4deg);user-select:none}
+.seal.logo{width:34px;height:34px;font-size:19px}
+.seal.yi{width:56px;height:56px;font-size:26px;letter-spacing:.1em}
+.seal.you{width:56px;height:56px;font-size:26px;border-radius:50%;transform:rotate(6deg);box-shadow:inset 0 0 0 2.5px rgba(247,239,224,.5),inset 0 0 10px rgba(90,20,14,.45),0 2px 6px rgba(90,20,14,.25)}
+.seal-row{display:flex;align-items:center;gap:22px}
+
+/* ===== 调色板 ===== */
+.swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media(max-width:760px){.swatches{grid-template-columns:repeat(3,1fr)}}
+.sw{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--sheet)}
+.sw i{display:block;height:52px}
+.sw b{display:block;font-family:var(--f-kai);font-size:13px;font-weight:600;padding:6px 8px 0}
+.sw span{display:block;font-size:11.5px;color:var(--ink2);padding:0 8px 8px;font-family:ui-monospace,monospace;font-weight:500;letter-spacing:.02em}
+
+/* ===== 朱批三件套 ===== */
+.essay{font-family:var(--f-song);font-size:16px;line-height:2.2}
+.bing{text-decoration:underline wavy var(--zhu) 1.5px;text-underline-offset:6px}
+.liang{text-decoration:underline dotted var(--dian) 2px;text-underline-offset:6px}
+.zhuoyao{text-emphasis:filled dot var(--zhu);text-emphasis-position:under right;-webkit-text-emphasis:filled dot var(--zhu);-webkit-text-emphasis-position:under}
+.margin-note{font-family:var(--f-kai);color:var(--zhu);font-size:14px;margin-top:10px;padding-left:12px;border-left:2px solid var(--zhu)}
+.margin-note.d{color:var(--dian);border-color:var(--dian)}
+
+/* ===== 田字格 / 四线三格 ===== */
+.tian{display:inline-block;width:64px;height:64px;border:2px solid var(--ink2);position:relative;margin:4px}
+.tian::before,.tian::after{content:"";position:absolute;background:transparent}
+.tian::before{left:50%;top:0;bottom:0;border-left:1.5px dashed var(--line);transform:translateX(-50%)}
+.tian::after{top:50%;left:0;right:0;border-top:1.5px dashed var(--line);transform:translateY(-50%)}
+.tian b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-kai);font-size:34px;font-weight:400}
+.tian .py{position:absolute;top:-24px;width:100%;text-align:center;font-size:13px;color:var(--ink2);letter-spacing:.05em}
+.sixian{height:48px;border-top:1.5px solid var(--ink2);border-bottom:1.5px solid var(--ink2);background:linear-gradient(to bottom,transparent calc(33.3% - .75px),var(--line) 33.3%,transparent calc(33.3% + .75px)),linear-gradient(to bottom,transparent calc(66.6% - .75px),var(--line) 66.6%,transparent calc(66.6% + .75px));display:flex;align-items:center;font-size:20px;color:var(--ink);letter-spacing:.6em;padding-left:10px}
+
+/* ===== 便签 ===== */
+.note{background:#F3E8C9;border:1px solid #E0D2A8;font-family:var(--f-kai);font-size:14px;line-height:1.9;padding:14px 16px 16px;transform:rotate(-1.2deg);box-shadow:0 6px 16px rgba(84,66,38,.13);position:relative;border-radius:2px}
+.note::before{content:"";position:absolute;top:-1px;left:8%;right:8%;height:7px;background:rgba(255,252,240,.55);border:1px solid rgba(224,210,168,.6);border-top:none}
+body.night .note{background:#3B3423;border-color:#4C432C;color:#E2D5AE}
+
+/* ===== 按钮 / 微组件 ===== */
+.btn{font-family:var(--f-ui);font-size:14px;border-radius:5px;padding:8px 20px;cursor:pointer;transition:all .14s ease-out;border:1px solid transparent}
+.btn.pri{background:var(--zhu);color:#F7EFE0;box-shadow:0 2px 0 rgba(90,20,14,.35),0 4px 10px rgba(90,20,14,.18)}
+.btn.pri:hover{filter:brightness(1.06)}
+.btn.pri:active{transform:translateY(1.5px);box-shadow:0 0 0 rgba(0,0,0,0),0 1px 3px rgba(90,20,14,.2)}
+.btn.sec{background:var(--sheet);border-color:var(--ink2);color:var(--ink)}
+.btn.sec:hover{border-color:var(--ink)}
+.btn.sec:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;color:var(--ink2)}
+.btn.ghost:hover{color:var(--zhu)}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.switch{width:44px;height:24px;border-radius:12px;border:1px solid var(--line);background:var(--paper);position:relative;cursor:pointer;transition:all .16s}
+.switch::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FCFAF3,var(--ink2));box-shadow:0 1px 2px rgba(0,0,0,.3);transition:left .16s ease-out}
+.switch.on{background:var(--tai);border-color:var(--tai)}
+.switch.on::after{left:22px;background:radial-gradient(circle at 35% 30%,#FFF,var(--tai))}
+input[type=text]{font-family:var(--f-ui);background:var(--sheet);border:none;border-bottom:1.5px solid var(--line);padding:7px 4px;font-size:14px;color:var(--ink);outline:none;transition:border-color .15s;min-width:180px}
+input[type=text]:focus{border-bottom-color:var(--zhu)}
+input::placeholder{color:var(--ink2);opacity:.7}
+
+/* ===== 案头示意 ===== */
+.desk{background:linear-gradient(160deg,#EDE5D2,#E6DCC6);border:1px solid var(--line);border-radius:8px;padding:30px 34px;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;min-height:240px}
+body.night .desk{background:linear-gradient(160deg,#2A251D,#241F18)}
+@media(max-width:760px){.desk{grid-template-columns:1fr 1fr}}
+.obj{transition:transform .16s ease-out,box-shadow .16s ease-out;cursor:pointer}
+.obj:hover{transform:rotate(0deg) translateY(-4px)!important;box-shadow:0 4px 8px rgba(84,66,38,.12),0 16px 34px rgba(84,66,38,.16)}
+.book{background:var(--sheet);border:1px solid var(--line);border-left:6px solid var(--zhu);border-radius:3px;box-shadow:var(--shadow-card);padding:14px 10px;display:flex;justify-content:center;transform:rotate(-1.6deg)}
+.book span{writing-mode:vertical-rl;font-family:var(--f-kai);letter-spacing:.35em;font-size:15px}
+.stack{position:relative;transform:rotate(1.1deg)}
+.stack::before,.stack::after{content:"";position:absolute;inset:0;background:var(--sheet);border:1px solid var(--line);border-radius:5px;box-shadow:var(--shadow-card)}
+.stack::before{transform:rotate(2.4deg)}
+.stack::after{transform:rotate(-1.6deg)}
+.stack .top{position:relative;background:var(--sheet);border:1px solid var(--line);border-radius:5px;box-shadow:var(--shadow-card);padding:13px 14px;font-family:var(--f-kai);font-size:14px}
+.stack .top small{display:block;font-family:var(--f-ui);color:var(--ink2);font-size:11px;margin-top:3px;letter-spacing:.02em}
+.pile{transform:rotate(-.8deg)}
+.stampchip{display:inline-block;font-size:10.5px;color:var(--tai);border:1px solid var(--tai);border-radius:3px;padding:0 4px;transform:rotate(-3deg);margin-left:6px;font-family:var(--f-kai)}
+
+footer{margin-top:70px;padding-top:18px;border-top:1px solid var(--line);color:var(--ink2);font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{header,.iconbtn,.btn{display:none}body::after{opacity:.15}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hbar">
+    <div class="brand">
+      <div class="seal logo">语</div>
+      <h1>李老师的案头</h1>
+    </div>
+    <nav class="tabs">
+      <button class="tab">三(2)班</button>
+      <button class="tab on">三上 · 部编版</button>
+      <button class="tab">作文</button>
+    </nav>
+    <button class="iconbtn" title="命令面板">⌘</button>
+    <button class="iconbtn night-toggle" title="夜读模式">☾</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <div class="spine">其一</div>
+  <div>
+    <h2>调色板</h2>
+    <p class="sub">中国传统色。朱砂只给"教师动作"——批、改、判、确认;装饰一律不用。</p>
+    <div class="swatches">
+      <div class="sw"><i style="background:#F5F1E6;border-bottom:1px solid #E3DBC8"></i><b>宣纸</b><span>#F5F1E6</span></div>
+      <div class="sw"><i style="background:#2A2620"></i><b>墨色</b><span>#2A2620</span></div>
+      <div class="sw"><i style="background:#B5453C"></i><b>朱砂</b><span>#B5453C</span></div>
+      <div class="sw"><i style="background:#3D5A6C"></i><b>靛青</b><span>#3D5A6C</span></div>
+      <div class="sw"><i style="background:#6B7F4E"></i><b>苔绿</b><span>#6B7F4E</span></div>
+      <div class="sw"><i style="background:#A9744F"></i><b>赭石</b><span>#A9744F</span></div>
+      <div class="sw"><i style="background:#F3E8C9"></i><b>便签米黄</b><span>#F3E8C9</span></div>
+      <div class="sw"><i style="background:#FCFAF3;border-bottom:1px solid #E3DBC8"></i><b>纸面</b><span>#FCFAF3</span></div>
+      <div class="sw"><i style="background:#211E19"></i><b>夜读底</b><span>#211E19</span></div>
+      <div class="sw"><i style="background:#E3DBC8"></i><b>纸边线</b><span>#E3DBC8</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="spine">其二</div>
+  <div>
+    <h2>材质样本</h2>
+    <p class="sub">纸张卡片、印章、朱批三件套、田字格、四线三格、便签。纹理为内联 SVG 噪点,零图片。</p>
+    <div class="grid g2">
+      <div class="card">
+        <div class="seal-row">
+          <div class="seal yi">已批</div>
+          <div class="seal you">优</div>
+          <div>
+            <div style="font-family:var(--f-kai);font-size:15px">印章:落款与批阅状态</div>
+            <div style="color:var(--ink2);font-size:12.5px;margin-top:4px">方形=批阅章 · 圆形=等级章<br>印泥不均 + 内框线,全局不超过两枚</div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="transform:rotate(.4deg)">
+        <div class="note">明日早读:听写《秋天的雨》生字<br>△ 收《练习册》P23<br>△ 通知:周五家长会材料</div>
+      </div>
+      <div class="card essay" style="grid-column:1/-1">
+        <div style="font-family:var(--f-kai);font-size:15px;color:var(--ink2);margin-bottom:8px">朱批三件套(作文批改视图)</div>
+        <p>秋天来了,公园里<span class="bing">开满了五颜六色的红花</span>。<span class="liang">小燕子斜着身子掠过湖面</span>,捎来了<span class="zhuoyao">秋天的消息</span>。</p>
+        <div class="margin-note">旁批:语义重复——删去"五颜六色",或改作"五颜六色的花"。</div>
+        <div class="margin-note d">旁批:好一个"掠"字!动作写得准。</div>
+      </div>
+      <div class="card" style="display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;padding-bottom:34px">
+        <div class="tian" style="margin-top:26px"><span class="py">yǒng</span><b>永</b></div>
+        <div class="tian" style="margin-top:26px"><span class="py">yuǎn</span><b>远</b></div>
+        <div class="tian" style="margin-top:26px"><span class="py">yǔ</span><b>雨</b></div>
+        <div style="color:var(--ink2);font-size:12.5px;margin-left:8px">田字格生字卡<br>写字表 · 笔顺演示位</div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;justify-content:center;gap:14px">
+        <div class="sixian">qiū tiān de yǔ</div>
+        <div class="sixian">jīn huáng de yě jú huā</div>
+        <div style="color:var(--ink2);font-size:12.5px">四线三格拼音条(听写配音对照)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="spine">其三</div>
+  <div>
+    <h2>案头布局 · 首页示意</h2>
+    <p class="sub">物件有机摆放、微旋转、大小不一——视觉是乱的,底下栅格是齐的。hover 物件 = 拿起(转正+抬升)。打开工具 = 铺开一张纸。</p>
+    <div class="desk">
+      <div class="obj book"><span>备课本书三上</span></div>
+      <div class="obj stack">
+        <div class="top">听写卡<small>《秋天的雨》 12 词 · 明早读</small></div>
+      </div>
+      <div class="obj pile">
+        <div class="card" style="padding:12px 14px;font-family:var(--f-kai)">作文本堆<span class="stampchip">已批 38/42</span><div style="font-family:var(--f-ui);color:var(--ink2);font-size:11px;margin-top:3px">第 3 篇 · 写秋天</div></div>
+      </div>
+      <div class="obj stack" style="transform:rotate(2deg)">
+        <div class="top">成绩册<small>期中 · 三(2)班</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="spine">其四</div>
+  <div>
+    <h2>按钮与微组件</h2>
+    <p class="sub">按下微下沉 = 盖章手感;开关与输入均带纸面材质。</p>
+    <div class="card">
+      <div class="row" style="margin-bottom:18px">
+        <button class="btn pri">开始听写</button>
+        <button class="btn sec">生成试卷</button>
+        <button class="btn ghost">存入错词本</button>
+        <span style="color:var(--ink2);font-size:12.5px;margin-left:6px">命令面板 <kbd>Ctrl</kbd> + <kbd>K</kbd></span>
+      </div>
+      <div class="row">
+        <div class="switch on" role="switch" aria-checked="true" tabindex="0"></div>
+        <span style="font-size:13.5px;color:var(--ink2)">听写自动进错词本</span>
+        <input type="text" placeholder="搜索课文 / 生字 / 学生…" style="margin-left:14px">
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>案头纸墨 · 材质小样 v0 —— 零依赖 · 纹理为内联 SVG 噪点 · 系统字体</span>
+  <span>夜读模式点右上角 ☾</span>
+</footer>
+</div>
+
+<script>
+document.querySelector('.night-toggle').onclick=()=>document.body.classList.toggle('night');
+document.querySelectorAll('.switch').forEach(s=>s.onclick=()=>{s.classList.toggle('on');s.setAttribute('aria-checked',s.classList.contains('on'))});
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));t.classList.add('on')});
+</script>
+</body>
+</html>
