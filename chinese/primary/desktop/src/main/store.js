@@ -103,6 +103,19 @@ export class Store {
     return { state, revision, storage: 'SQLite' };
   }
 
+  listHistory() {
+    return this.db.prepare('SELECT revision, length(payload) AS bytes FROM history ORDER BY revision DESC').all();
+  }
+
+  readHistory(revision) {
+    const row = this.db.prepare('SELECT revision, payload FROM history WHERE revision=?').get(revision);
+    if (!row) return null;
+    let payload = null;
+    try { payload = JSON.parse(row.payload); } catch { payload = null; }
+    const missing = payload ? COLLECTIONS.filter((k) => !Array.isArray(payload[k])) : [...COLLECTIONS];
+    return { revision: row.revision, state: payload, intact: Boolean(payload) && missing.length === 0, missingCollections: missing };
+  }
+
   close() { this.db.close(); }
 
   write(state, expected, mutationId) {
@@ -119,7 +132,15 @@ export class Store {
       }
       const prev = this.db.prepare('SELECT revision, payload FROM metadata WHERE id=1').get();
       if (prev.revision !== expected) throw new Conflict('其他窗口已保存新记录。请保留当前表单内容,重新读取最新数据后再修改');
-      if (prev.payload) this.db.prepare('INSERT INTO history(revision, payload) VALUES (?, ?)').run(prev.revision, prev.payload);
+      if (prev.payload) {
+        // 历史快照必须含全部集合,否则无法还原完整状态(旧版只存 metadata 会缺 classes/students 等)
+        let full = {};
+        try { full = JSON.parse(prev.payload); } catch { full = {}; }
+        for (const key of COLLECTIONS) {
+          full[key] = this.db.prepare(`SELECT payload FROM "${key}" ORDER BY position`).all().map((r) => JSON.parse(r.payload));
+        }
+        this.db.prepare('INSERT INTO history(revision, payload) VALUES (?, ?)').run(prev.revision, encode(full));
+      }
       for (const key of [...COLLECTIONS].reverse()) this.db.prepare(`DELETE FROM "${key}"`).run();
       for (const key of COLLECTIONS) {
         const insert = this.db.prepare(

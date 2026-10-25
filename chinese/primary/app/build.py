@@ -88,6 +88,11 @@ def build() -> None:
     target_html = ROOT / "index.html"
     target_html.write_text(output, encoding="utf-8", newline="\n")
     (ROOT / "index.r1.html").write_text(output, encoding="utf-8", newline="\n")
+
+    # 桌面壳加载的是本副本;保持与 Web 构建强一致,避免两份页面漂移
+    desktop_renderer = ROOT.parent / "desktop" / "src" / "renderer" / "index.html"
+    if desktop_renderer.parent.exists():
+        desktop_renderer.write_text(output, encoding="utf-8", newline="\n")
     print(f"built {target_html} ({target_html.stat().st_size} bytes, {len(seen)} PDFs)")
 
 

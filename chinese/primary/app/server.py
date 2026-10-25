@@ -295,6 +295,10 @@ class Handler(BaseHTTPRequestHandler):
         path = unquote(urlsplit(self.path).path)
         if path == '/api/session':
             return self.reply(200, {'token': self.server.token, 'storage': 'SQLite', 'app': 'primary-chinese-workbench'})
+        if path == '/api/aikey':
+            if not self.allowed(True):
+                return
+            return self.reply(200, {'has': bool(read_server_ai_key())})
         if path == '/api/news':
             news = fetch_news()
             if news:
@@ -353,6 +357,17 @@ class Handler(BaseHTTPRequestHandler):
         if not self.allowed():
             return
         path = unquote(urlsplit(self.path).path)
+        if path == '/api/aikey' and self.command == 'POST':
+            size = int(self.headers.get('Content-Length', '0'))
+            if not 0 < size <= 4096:
+                return self.reply(413, {'error': '请求过大'})
+            req = json.loads(self.rfile.read(size))
+            key = str(req.get('key') or '').strip()
+            if not key:
+                return self.reply(400, {'error': '缺少 Key'})
+            AI_KEY_PATH.parent.mkdir(parents=True, exist_ok=True)
+            AI_KEY_PATH.write_text(key, encoding='utf-8')
+            return self.reply(200, {'ok': True})
         if path == '/api/ai' and self.command == 'POST':
             size = int(self.headers.get('Content-Length', '0'))
             if not 0 < size <= 1024 * 1024:
@@ -360,11 +375,12 @@ class Handler(BaseHTTPRequestHandler):
             req = json.loads(self.rfile.read(size))
             base = str(req.get('base') or 'https://api.deepseek.com').replace('/chat/completions', '').rstrip('/')
             model = str(req.get('model') or 'deepseek-flash')
-            key = str(req.get('key') or '')
+            # 请求不带 Key 时回退到服务端加密目录存储的 Key(避免 Key 进入业务状态/备份)
+            key = str(req.get('key') or '') or read_server_ai_key()
             messages = req.get('messages')
             temperature = req.get('temperature', 0.5)
             if not key or not isinstance(messages, list):
-                return self.reply(400, {'error': '缺少 Key 或消息'})
+                return self.reply(400, {'error': '未配置 AI Key,请先在设置里保存'})
             body = json.dumps({'model': model, 'messages': messages, 'temperature': temperature, 'stream': False}).encode('utf-8')
             r2 = urllib.request.Request(base + '/chat/completions', data=body, headers={'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key})
             try:
@@ -399,6 +415,16 @@ class Handler(BaseHTTPRequestHandler):
             return self.reply(400, {'error': str(exc)})
         except sqlite3.Error:
             return self.reply(503, {'error': 'SQLite 写入失败，事务已回滚；请检查磁盘后重试'})
+
+
+AI_KEY_PATH = ROOT / 'data' / 'ai.key'
+
+
+def read_server_ai_key():
+    try:
+        return AI_KEY_PATH.read_text(encoding='utf-8').strip()
+    except OSError:
+        return ''
 
 
 def main():

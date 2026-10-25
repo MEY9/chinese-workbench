@@ -671,6 +671,11 @@ async function requestJSON(path,options={}){
   }finally{clearTimeout(timer)}
 }
 
+async function aikeyRequest(options={}){
+  if(!sqliteToken)await refreshSession();
+  const send=()=>requestJSON('/api/aikey',{...options,headers:{'Content-Type':'application/json','X-Workbench-Token':sqliteToken}});
+  try{return await send()}catch(e){if(e.status!==403)throw e;await refreshSession();return send()}
+}
 async function refreshSession(){const session=await requestJSON('/api/session');if(session.app!=='primary-chinese-workbench'||session.storage!=='SQLite'||!session.token)throw Error('当前地址不是 SQLite 教师工作台服务');sqliteToken=session.token}
 async function sqliteRequest(options={}){
   if(!sqliteToken)await refreshSession();
@@ -685,6 +690,8 @@ async function loadState(){
     let raw=null;try{raw=localStorage.getItem('wb_r1_state')}catch(e){}
     if(raw===null){const old=migrateLegacy();if(old.classes.length||old.legacyWrong.length||Object.keys(old.bankOverride).length)raw=JSON.stringify(old)}
     state=raw?structuredClone(checkedStoredState(JSON.parse(raw))):defaultState();
+    migrateScopedBuckets();
+    if(state.settings&&state.settings.ai&&state.settings.ai.key){const k=String(state.settings.ai.key).trim();delete state.settings.ai.key;try{await DesktopAI.saveKey(k)}catch(e){}}
     storageNeedsReload=false;reconcileBooks();return;
     try{storageRecovery.fallbackRaw=localStorage.getItem('wb_r1_state')}catch(e){errors.push('备用存储读取失败')}
     try{db=await openDB();if(db)storageRecovery.primary=await getDB()}catch(e){errors.push(e.message)}finally{db?.close?.();db=null}
@@ -693,7 +700,8 @@ async function loadState(){
   }
   await refreshSession();const result=await sqliteRequest();sqliteRevision=result.revision;
   storageRecovery.primary=result.state;storageRecovery.writable=true;
-  state=result.state===null?defaultState():Object.assign(defaultState(),structuredClone(checkedStoredState(result.state)));state.records=state.records||[];state.reciteLogs=state.reciteLogs||[];state.aiCache=state.aiCache||{};state.newsCache=state.newsCache||{date:'',list:[],source:''};state.grades=state.grades||[];state.seats=state.seats||[];state.points=state.points||{};state.widgets=state.widgets||{marquee:{texts:['今天也要元气满满,孩子们加油!'],style:'ribbon'},clock:{countdownMin:0}};
+  state=result.state===null?defaultState():Object.assign(defaultState(),structuredClone(checkedStoredState(result.state)));migrateScopedBuckets();
+  if(state.settings&&state.settings.ai&&state.settings.ai.key){const k=String(state.settings.ai.key).trim();delete state.settings.ai.key;try{await DesktopAI.saveKey(k)}catch(e){}}state.records=state.records||[];state.reciteLogs=state.reciteLogs||[];state.aiCache=state.aiCache||{};state.newsCache=state.newsCache||{date:'',list:[],source:''};state.grades=state.grades||[];state.seats=state.seats||[];state.points=state.points||{};state.widgets=state.widgets||{marquee:{texts:['今天也要元气满满,孩子们加油!'],style:'ribbon'},clock:{countdownMin:0}};
   storageNeedsReload=false;
   // Reconcile bundled book references in memory; persist with the next explicit user save.
   reconcileBooks();
@@ -1077,10 +1085,17 @@ function renderComments(){
     <div class="card"><h2>隐私</h2><p class="small muted">🔒 AI 请求仅包含学号代号与学业摘要;敏感记录与姓名永不发送;AI 输出为草稿,审定后才生效。</p></div>
   </section></div>`}
 function newGradeObj(){const c=currentClass();return {id:uid(),classId:c.id,name:'成绩单 '+(inClass(state.grades).length+1),date:today(),scores:[]}}
+function migrateScopedBuckets(){
+  if(state&&state.points&&!state.pointsByClass){state.pointsLegacy=state.points;delete state.points}
+  if(state&&Array.isArray(state.seats)&&state.seats.length){state.seatsLegacy=state.seats;delete state.seats}
+}
+function classBucket(key){const c=currentClass();if(!c)return null;state[key]=state[key]||{};return state[key][c.id]=state[key][c.id]||{}}
+function classSeats(){const b=classBucket('seatsByClass');if(!b)return[];if(!Array.isArray(b.list)||!b.list.length)b.list=inClass(state.students).slice().sort((a,b)=>a.no.localeCompare(b.no,'zh-CN')).map(s=>s.id);return b.list}
+function classPoints(){const b=classBucket('pointsByClass');return b||{}}
 function renderSeats(){
   if(!currentClass())return noClass();
   const st=inClass(state.students).slice().sort((a,b)=>a.no.localeCompare(b.no,'zh-CN'));
-  const seats=state.seats&&state.seats.length?state.seats:st.map(s=>s.id);
+  const seats=classSeats();
   const cols=6;const grid=[];seats.forEach((id,i)=>{const r=Math.floor(i/cols);(grid[r]=grid[r]||[]).push(id)});
   return heading('座位表','点两个座位交换;打印自动排版。',btn('🖨 打印座位表','doPrintSeats','primary sm')+btn('重置为名册序','resetSeats','ghost sm'))+
   '<div class="card"><div class="seat-grid">'+grid.map(row=>row.map(id=>{const s=st.find(x=>x.id===id);if(!s)return '<div class="seat empty-seat">空</div>';
@@ -1089,21 +1104,25 @@ function renderSeats(){
 function renderPoints(){
   if(!currentClass())return noClass();
   const st=inClass(state.students).slice().sort((a,b)=>a.no.localeCompare(b.no,'zh-CN'));
-  const ranked=st.slice().sort((a,b)=>(state.points[b.no]||0)-(state.points[a.no]||0));
-  return heading('班级积分榜','课堂表现即时加减分,自动排序。')+(st.length?
+  const pts=classPoints();
+  const ranked=st.slice().sort((a,b)=>(pts[b.id]||0)-(pts[a.id]||0));
+  const legacyHint=(state.pointsLegacy&&Object.keys(state.pointsLegacy).length)?notice('检测到旧版积分 '+Object.keys(state.pointsLegacy).length+' 条(未区分班级,已停止使用;原始数据仍保留在备份导出的 pointsLegacy 字段)。',true):'';
+  return heading('班级积分榜','课堂表现即时加减分,自动排序。')+legacyHint+(st.length?
   '<div class="card"><table><thead><tr><th>名次</th><th>学生</th><th>积分</th><th>操作</th></tr></thead><tbody>'+
-  ranked.map((s,i)=>`<tr><td>${i+1}</td><td>${E(s.no)}号 ${E(s.name)}</td><td><b style="color:var(--sky)">${state.points[s.no]||0}</b></td><td><button class="btn grass sm" data-act="pointPlus" data-no="${A(s.no)}">＋</button> <button class="btn ghost sm" data-act="pointMinus" data-no="${A(s.no)}">－</button></td></tr>`).join('')+
+  ranked.map((s,i)=>`<tr><td>${i+1}</td><td>${E(s.no)}号 ${E(s.name)}</td><td><b style="color:var(--sky)">${pts[s.id]||0}</b></td><td><button class="btn grass sm" data-act="pointPlus" data-id="${A(s.id)}" data-no="${A(s.no)}">＋</button> <button class="btn ghost sm" data-act="pointMinus" data-no="${A(s.no)}">－</button></td></tr>`).join('')+
 '</tbody></table></div>':'<p class="muted">先导入名册</p>')
 }
 function passLine(){return Number((state.settings&&state.settings.passLine))||60}
 function gradeStats(scores){
-  const nums=scores.map(s=>Number(s.score)).filter(n=>!isNaN(n));
-  if(!nums.length)return null;
+  const nums=[],absentN=(scores||[]).filter(s=>s&&s.absent).length;
+  (scores||[]).forEach(s=>{if(!s||s.absent)return;const v=String(s.score==null?'':s.score).trim();if(v==='')return;
+    const n=Number(v);if(!isFinite(n)||n<0||n>100)return;nums.push(n)});
+  if(!nums.length)return absentN?{avg:null,max:null,min:null,excRate:0,passRate:0,n:0,absentN}:null;
   const avg=nums.reduce((a,b)=>a+b,0)/nums.length;
   const sorted=[...nums].sort((a,b)=>a-b);
   const excellent=nums.filter(n=>n>=85).length, pass=nums.filter(n=>n>=passLine()).length;
   return {avg:Math.round(avg*10)/10, max:sorted[sorted.length-1], min:sorted[0],
-          excRate:Math.round(excellent/nums.length*100), passRate:Math.round(pass/nums.length*100), n:nums.length};
+          excRate:Math.round(excellent/nums.length*100), passRate:Math.round(pass/nums.length*100), n:nums.length, absentN};
 }
 function renderGrades(){
   if(!currentClass())return noClass();
@@ -1133,12 +1152,12 @@ function renderGrades(){
   ${state.aiCache&&state.aiCache['grade:'+cur.id]?`<div class="card ai-card"><h2>✦ AI 成绩解读</h2><p class="small">${E(state.aiCache['grade:'+cur.id])}</p></div>`:''}
   <section class="card"><h2>${E(cur.name)} · 分数录入</h2>
   <div class="tablewrap"><table><thead><tr><th>学生</th><th>分数</th><th>等级</th><th>较上次</th></tr></thead><tbody>
-  ${st.map(s=>{const sc=byStu[s.id];const v=sc?Number(sc.score):null;const pv=prevMap[s.id];
+  ${st.map(s=>{const sc=byStu[s.id];const raw=sc?String(sc.score==null?'':sc.score).trim():'';const v=raw===''?null:Number(raw);const pv=prevMap[s.id];
     const grade=v==null?'':(v>=85?'优':v>=75?'良':v>=passLine()?'及格':'待及格');
     const gcls=v==null?'':(v>=75?'status blue':v>=passLine()?'status':'status magenta');
     const diff=(v!=null&&pv!=null)?(v-pv):null;
     return `<tr><td>${E(s.no)}号 ${E(s.name)}</td>
-      <td><input type="number" min="0" max="100" value="${v==null?'':v}" data-act="gradeInput" data-grade="${A(cur.id)}" data-sid="${A(s.id)}" style="width:76px"></td>
+      <td><span class="row" style="gap:8px;flex-wrap:nowrap"><input type="number" min="0" max="100" value="${v==null?'':v}" data-act="gradeInput" data-grade="${A(cur.id)}" data-sid="${A(s.id)}" style="width:76px"${sc&&sc.absent?' disabled':''}><label class="small" style="white-space:nowrap"><input type="checkbox" data-act="gradeAbsent" data-grade="${A(cur.id)}" data-sid="${A(s.id)}" ${sc&&sc.absent?'checked':''}>缺考</label></span></td>
       <td><span class="${gcls}">${grade}</span></td>
       <td>${diff==null?'—':'<b style="color:'+(diff>=0?'var(--grass)':'var(--coral)')+'">'+(diff>0?'+':'')+diff+'</b>'}</td></tr>`}).join('')}
   ${st.length?'':'<tr><td colspan=4>请先导入名册</td></tr>'}
@@ -1161,7 +1180,8 @@ function renderProfile(){
   const cur=st.find(x=>x.id===ui.profileStudent);if(!cur){ui.profileStudent=null;return renderProfile()}
   state.records=state.records||[];state.reciteLogs=state.reciteLogs||[];state.aiCache=state.aiCache||{};
   const recs=state.records.filter(r=>r.studentId===cur.id).sort((a,b)=>b.date.localeCompare(a.date));
-  const dictHist=inClass(state.dictations).map(d=>({date:d.date,n:(d.studentMarks&&d.studentMarks[cur.id]?d.studentMarks[cur.id].wrongWords||[]:[]).length,marked:d.studentMarks&&d.studentMarks[cur.id]?d.studentMarks[cur.id].status:'未录'})).filter(x=>x.marked!=='未录').slice(-5);
+  const allDict=inClass(state.dictations).map(d=>({date:d.date,n:(d.studentMarks&&d.studentMarks[cur.id]?d.studentMarks[cur.id].wrongWords||[]:[]).length,marked:d.studentMarks&&d.studentMarks[cur.id]?d.studentMarks[cur.id].status:'未录'})).filter(x=>x.marked&&x.marked!=='未录').sort((a,b)=>a.date.localeCompare(b.date));
+  const dictHist=allDict.slice(-5);
   const g=[];inClass(state.assignments).forEach(a=>(a.scores||[]).forEach(s=>{if(s.studentId===cur.id)g.push(Number(s.score||0))}));
   const avg=g.length?Math.round(g.reduce((a,b)=>a+b,0)/g.length):null;
   const maxN=Math.max(1,...dictHist.map(x=>x.n));
@@ -1182,7 +1202,7 @@ function renderProfile(){
     </section>
     <section class="card"><h2>学业概览 <small class="muted">(自动聚合)</small></h2>
       <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px">
-        <div class="inset" style="text-align:center"><small>听写错词累计</small><b style="display:block;font-size:22px">${dictHist.reduce((a,x)=>a+x.n,0)}</b></div>
+        <div class="inset" style="text-align:center"><small>听写错词累计(全部${allDict.length}次)</small><b style="display:block;font-size:22px">${allDict.reduce((a,x)=>a+x.n,0)}</b></div>
         <div class="inset" style="text-align:center"><small>作文均分</small><b style="display:block;font-size:22px">${avg==null?'—':avg}</b></div>
         <div class="inset" style="text-align:center"><small>背诵通过</small><b style="display:block;font-size:22px">${state.reciteLogs.filter(r=>r.studentId===cur.id&&r.pass).length}</b></div>
         <div class="inset" style="text-align:center"><small>待复查</small><b style="display:block;font-size:22px">${inClass(state.followups).filter(f=>f.status==='待办'&&(f.studentIds||[]).includes(cur.id)).length}</b></div>
@@ -1207,9 +1227,9 @@ function renderProfile(){
 }
 
 function profileDataSummary(cur){
-  const recs=(state.records||[]).filter(r=>r.studentId===cur.id);
-  const dictHist=inClass(state.dictations).map(d=>({n:(d.studentMarks?.[cur.id]?.wrongWords||[]).length,marked:d.studentMarks?.[cur.id]?.status})).filter(x=>x.marked!=='未录');
-  const wrongTop={};inClass(state.dictations).forEach(d=>{const w=(d.studentMarks?.[cur.id]?.wrongWords)||[];w.forEach(x=>{wrongTop[x]=(wrongTop[x]||0)+1})});
+  const recs=(state.records||[]).filter(r=>r.studentId===cur.id&&!r.sensitive);
+  const dictHist=inClass(state.dictations).map(d=>({n:(d.studentMarks?.[cur.id]?.wrongWords||[]).length,marked:d.studentMarks?.[cur.id]?.status})).filter(x=>x.marked&&x.marked!=='未录');
+  const wrongTop={};inClass(state.dictations).forEach(d=>{const mk=d.studentMarks?.[cur.id];if(!mk||!mk.status||mk.status==='未录')return;(mk.wrongWords||[]).forEach(x=>{wrongTop[x]=(wrongTop[x]||0)+1})});
   const topWrong=Object.entries(wrongTop).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([w,c])=>w+'(错'+c+'次)').join('、')||'无';
   return `该生(${cur.no}号)数据:听写记录 ${dictHist.length} 次,累计错词 ${dictHist.reduce((a,x)=>a+x.n,0)} 个,常错词:${topWrong};观察记录 ${recs.length} 条(需关注 ${recs.filter(r=>r.type==='需关注').length} 条、闪光点 ${recs.filter(r=>r.type==='闪光点').length} 条)。请基于以上真实数据给出学期小结(80字内,语气鼓励,先扬后抑)。`;
 }
@@ -1238,12 +1258,13 @@ function renderSettings(){const ai=state.settings.ai||{};storageMode=storageMode
 <label class="field">左上角名称(≤12字)<input name="bname" maxlength="12" value="${E((state.brand||{}).name||'语文工作台')}"></label>
 <label class="field">副标语(≤20字)<input name="bslogan" maxlength="20" value="${E((state.brand||{}).slogan||'小学语文教师')}"></label></div>
 <div>${btn('保存品牌(本卡独立保存)','brandSave','sky sm')}</div></form></section>
-<section class="card"><h2>备份与恢复</h2><p class="muted">业务数据保存在本机 ${E(storageMode)} 数据库 app/data/workbench.sqlite3 中。浏览器只显示页面；请定期导出 JSON 备份。</p><label class="row"><input type="checkbox" id="exportKey"> 备份中包含 AI API Key（默认不包含）</label><div class="row mt">${btn('导出 JSON 备份','exportBackup','primary')}${btn('重新读取数据库','retryStorage')}<label class="btn" for="backupFile">选择备份导入</label></div><input id="backupFile" type="file" accept=".json,application/json" hidden>${ui.importCandidate?renderImportPreview():''}<p class="small muted mt">PDF 文件不包含在业务数据 JSON 中，需与应用包单独保留。</p></section><section class="card"><h2>AI 服务配置（R1 不主动调用）</h2><p class="small muted">仅在后续教师主动使用 AI 功能时才会请求所填服务；当前核心功能离线可用。</p><form data-form="settings" class="stack">${field('base','Base URL',ai.base||'','url')}<label class="field">模型<select name="model"><option value="deepseek-flash"${(ai.model||"deepseek-flash")==="deepseek-flash"?" selected":""}>deepseek-flash(推荐,日常使用)</option><option value="deepseek-v4-pro"${ai.model==="deepseek-v4-pro"?" selected":""}>deepseek-v4-pro(更强,消耗更大)</option></select></label><div id="modelWarn" class="notice"${ai.model==="deepseek-v4-pro"?"":" hidden"}>⚠ 你选择了 deepseek-v4-pro:它更聪明,但消耗量明显更大、费用更高。日常批改与草稿用 deepseek-flash 就足够。</div>${field('key','API Key',ai.key||'','password')}<button class="btn primary" type="submit">保存 AI 配置(本卡独立保存)</button> <button type="button" class="btn" data-act="aiTest">测试连接</button></form></section></div>`}
+<section class="card"><h2>备份与恢复</h2><p class="muted">业务数据保存在本机 ${E(storageMode)} 数据库 app/data/workbench.sqlite3 中。浏览器只显示页面；请定期导出 JSON 备份。</p><label class="row"><input type="checkbox" id="exportKey"> 备份中包含 AI API Key（默认不包含）</label><div class="row mt">${btn('导出 JSON 备份','exportBackup','primary')}${btn('重新读取数据库','retryStorage')}<label class="btn" for="backupFile">选择备份导入</label></div><input id="backupFile" type="file" accept=".json,application/json" hidden>${ui.importCandidate?renderImportPreview():''}<p class="small muted mt">PDF 文件不包含在业务数据 JSON 中，需与应用包单独保留。</p></section><section class="card"><h2>AI 服务配置（R1 不主动调用）</h2><p class="small muted">仅在后续教师主动使用 AI 功能时才会请求所填服务；当前核心功能离线可用。</p><form data-form="settings" class="stack">${field('base','Base URL',ai.base||'','url')}<label class="field">模型<select name="model"><option value="deepseek-flash"${(ai.model||"deepseek-flash")==="deepseek-flash"?" selected":""}>deepseek-flash(推荐,日常使用)</option><option value="deepseek-v4-pro"${ai.model==="deepseek-v4-pro"?" selected":""}>deepseek-v4-pro(更强,消耗更大)</option></select></label><div id="modelWarn" class="notice"${ai.model==="deepseek-v4-pro"?"":" hidden"}>⚠ 你选择了 deepseek-v4-pro:它更聪明,但消耗量明显更大、费用更高。日常批改与草稿用 deepseek-flash 就足够。</div>${field('key','API Key(保存后加密存储,不进入业务数据;留空=不修改)','','password')}<button class="btn primary" type="submit">保存 AI 配置(本卡独立保存)</button> <button type="button" class="btn" data-act="aiTest">测试连接</button></form></section></div>`}
 function renderImportPreview(){const s=ui.importCandidate;return `<div class="inset mt"><h3>备份预览</h3><p>版本 ${s.version} · 班级 ${s.classes.length} · 学生 ${s.students.length} · 听写 ${s.dictations.length} · 作业 ${s.assignments.length} · 复查 ${s.followups.length}</p><p class="small muted">导入将整体覆盖当前 R1 数据。导入失败时原数据不变。</p><div class="row">${btn('确认覆盖导入','confirmImport','accent')}${btn('取消','cancelImport')}</div></div>`}
 function legacyPanel(){const words=state.legacyWrong||[];if(!words.length)return '<p class="muted">没有旧版错词。</p>';return `<div class="tablewrap" style="max-height:260px"><table><thead><tr><th>词语</th><th>拼音</th><th>归属</th></tr></thead><tbody>${words.map(x=>`<tr><td>${E(x.word)}</td><td>${E(x.pinyin)}</td><td><select data-act="assignLegacy" data-id="${A(x.id)}" aria-label="${A(x.word)}归属班级"><option value="" ${!x.classId?'selected':''}>个人词单（未归班）</option>${state.classes.map(c=>`<option value="${A(c.id)}" ${x.classId===c.id?'selected':''}>${E(c.name)}</option>`).join('')}</select></td></tr>`).join('')}</tbody></table></div>`}
 
 document.addEventListener('input',event=>captureFormDraft(event.target.closest('form[data-form]')));
 document.addEventListener('change',async event=>{const el0=event.target;if(el0.name==='model'){const w=document.getElementById('modelWarn');if(w)w.hidden=el0.value!=='deepseek-v4-pro'}
+  if(el0.dataset&&el0.dataset.act==='gradeAbsent'){const g=(state.grades||[]).find(x=>x.id===el0.dataset.grade);if(g){let row=g.scores.find(s=>s.studentId===el0.dataset.sid);if(!row){row={studentId:el0.dataset.sid,score:''};g.scores.push(row)}row.absent=el0.checked;if(el0.checked)row.score='';ui.dirty=true;const inp=document.querySelector('[data-act=gradeInput][data-sid="'+el0.dataset.sid+'"]');if(inp)inp.disabled=el0.checked;return}}
   if(el0.dataset&&el0.dataset.act==='gradeInput'){const g=(state.grades||[]).find(x=>x.id===el0.dataset.grade);if(g){let row=g.scores.find(s=>s.studentId===el0.dataset.sid);if(!row){row={studentId:el0.dataset.sid,score:''};g.scores.push(row)}row.score=el0.value;ui.dirty=true}return}
   if(el0.id==='classSwitch'&&ui.dirty&&!(await uiConfirm('当前表单有未保存的更改，确定切换班级吗？'))){renderApp();return}
   return stateOperation(async()=>{const el=event.target;captureFormDraft(el.closest?.('form[data-form]'));if(el.id==='bookGrade'){ui.bookGrade=el.value;renderApp();document.querySelector('#bookGrade')?.focus();return}if(el.id==='bookTerm'){ui.bookTerm=el.value;renderApp();document.querySelector('#bookTerm')?.focus();return}if(el.id==='bookPublisher'){ui.bookPublisher=el.value;renderApp();document.querySelector('#bookPublisher')?.focus();return}if(el.id==='classSwitch'){if(ui.dirty&&!(await uiConfirm('当前表单有未保存的更改，确定切换班级吗？'))){renderApp();return}if(el.value&&!state.classes.some(c=>c.id===el.value))return toast('班级不存在');state.selectedClassId=el.value||null;discardDrafts();clearClassContext();await save();renderApp();return}if(el.id==='csvFile'){try{if(!currentClass())return toast('请先选择班级');if(!el.files?.[0])return;ui.csvCandidate=parseCSV(await el.files[0].text());ui.csvClassId=state.selectedClassId;renderApp()}catch(e){toast(`CSV 错误：${e.message}`)}return}if(el.id==='backupFile'){try{const value=JSON.parse(await el.files[0].text());if(!validImport(value))throw Error('备份结构或版本不正确');ui.importCandidate=value.state;renderApp()}catch(e){toast(`备份无效：${e.message}`)}return}if(el.id==='tempPdfFile'){const f=el.files?.[0];if(!f)return;if(f.type!=='application/pdf'&&!f.name.toLowerCase().endsWith('.pdf'))return toast('请选择 PDF 文件');if(ui.pdfUrl?.startsWith('blob:'))URL.revokeObjectURL(ui.pdfUrl);ui.pdfUrl=URL.createObjectURL(f);ui.pdfTemporary=true;ui.pdfFileName=f.name;ui.pdfReturn='resources';ui.view='pdf';location.hash='pdf';renderApp();return}if(el.dataset.act==='assignLegacy'){const item=state.legacyWrong.find(x=>x.id===el.dataset.id);if(!item)return;if(el.value&&!state.classes.some(c=>c.id===el.value))return toast('班级不存在');item.classId=el.value||null;await save();renderApp();return}if(el.name?.startsWith('studentPick_')){updateStudentPickCount(el.closest('form[data-form]'));return}if(el.dataset.act==='wordToggle'){ui.dictWords[Number(el.dataset.index)].on=el.checked;ui.dirty=true;stopDict();ui.dictIndex=-1;renderApp()}})});
@@ -1348,8 +1369,17 @@ case'gradeInput':{const g=(state.grades||[]).find(x=>x.id===el.dataset.grade);if
   let row=g.scores.find(s=>s.studentId===el.dataset.sid);if(!row){row={studentId:el.dataset.sid,score:''};g.scores.push(row)}
   row.score=el.value;ui.dirty=true;break}
 case'saveGrades':{const gid=ui.gradeSel||((document.querySelector('[data-act=gradeInput]')||{}).dataset||{}).grade;const g=(state.grades||[]).find(x=>x.id===gid);if(!g)break;
-  g.scores=inClass(state.students).map(s=>({studentId:s.id,score:String(((document.querySelector('[data-act=gradeInput][data-sid="'+s.id+'"]')||{}).value)||'').trim()}));
-  ui.dirty=true;await save();toast('分数已保存,统计已更新');renderApp();break}
+  const rows=[];let bad=0;
+  inClass(state.students).forEach(s=>{
+    const ab=document.querySelector('[data-act=gradeAbsent][data-sid="'+s.id+'"]');
+    if(ab&&ab.checked){rows.push({studentId:s.id,score:'',absent:true});return}
+    const raw=String(((document.querySelector('[data-act=gradeInput][data-sid="'+s.id+'"]')||{}).value)||'').trim();
+    if(raw===''){rows.push({studentId:s.id,score:''});return}
+    const n=Number(raw);
+    if(!isFinite(n)||n<0||n>100){bad++;return}
+    rows.push({studentId:s.id,score:raw})});
+  if(bad)return toast(bad+' 个分数无效(需 0-100 的数字),本次未保存');
+  g.scores=rows;ui.dirty=true;await save();toast('分数已保存(空白与缺考不计入统计)');renderApp();break}
 case'gradeAI':{const g=(state.grades||[]).find(x=>x.id===ui.gradeSel);if(!g)break;const st=gradeStats(g.scores||[]);if(!st){toast('先录入分数');break}
   toast('AI 解读中…');
   try{const prev=inClass(state.grades).filter(x=>x.id!==g.id&&x.date<=g.date).sort((a,b)=>b.date.localeCompare(a.date))[0];
@@ -1368,19 +1398,19 @@ case'printReciteTrack':{const c=currentClass();if(!c)break;
   printHTML(printHeader('背诵听写默写跟踪表','班级:'+E(c.name),'')+'<table class="print-table"><tr><th>序号</th><th>学号</th><th>姓名</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>累计</th></tr>'+rows+'</table>');break}
 case'printSeats':{ui.view='seats';renderApp();break}
 case'doPrintSeats':{const c=currentClass();const st=inClass(state.students).slice().sort((a,b)=>a.no.localeCompare(b.no,'zh-CN'));
-  const seats=state.seats&&state.seats.length?state.seats:st.map(s=>s.id);const cols=6;let html='';
+  const seats=classSeats();const cols=6;let html='';
   for(let i=0;i<seats.length;i+=cols){html+='<tr>'+(seats.slice(i,i+cols).map(id=>{const s=st.find(x=>x.id===id);return '<td style="height:16mm;text-align:center">'+(s?E(s.no)+'号 '+E(s.name):'空')+'</td>'}).join('')+(seats.slice(i,i+cols).length<cols?'<td colspan="'+(cols-seats.slice(i,i+cols).length)+'"></td>':'')+'</tr>')}
   printHTML(printHeader('座位表','班级:'+E(c.name),'')+'<table class="print-table">'+html+'</table><p style="margin-top:5mm;text-align:center">讲台</p>');break}
-case'resetSeats':{state.seats=inClass(state.students).slice().sort((a,b)=>a.no.localeCompare(b.no,'zh-CN')).map(s=>s.id);ui.dirty=true;await save();renderApp();break}
-case'seatSwap':{state.seats=state.seats&&state.seats.length?state.seats:inClass(state.students).slice().sort((a,b)=>a.no.localeCompare(b.no,'zh-CN')).map(s=>s.id);
+case'resetSeats':{const b=classBucket('seatsByClass');if(!b)break;b.list=inClass(state.students).slice().sort((a,b)=>a.no.localeCompare(b.no,'zh-CN')).map(s=>s.id);ui.dirty=true;await save();renderApp();break}
+case'seatSwap':{const b=classBucket('seatsByClass');if(!b)break;if(!Array.isArray(b.list)||!b.list.length)b.list=inClass(state.students).slice().sort((a,b)=>a.no.localeCompare(b.no,'zh-CN')).map(s=>s.id);
   if(!ui.seatSwapA){ui.seatSwapA=el.dataset.id;renderApp();break}
   if(ui.seatSwapA===el.dataset.id){ui.seatSwapA=null;renderApp();break}
-  const i=state.seats.indexOf(ui.seatSwapA),j=state.seats.indexOf(el.dataset.id);
-  if(i>=0&&j>=0){const t=state.seats[i];state.seats[i]=state.seats[j];state.seats[j]=t;ui.dirty=true;await save()}
+  const i=b.list.indexOf(ui.seatSwapA),j=b.list.indexOf(el.dataset.id);
+  if(i>=0&&j>=0){const t=b.list[i];b.list[i]=b.list[j];b.list[j]=t;ui.dirty=true;await save()}
   ui.seatSwapA=null;renderApp();break}
 case'openPoints':ui.view='points';renderApp();break;
-case'pointPlus':{const no=el.dataset.no;state.points=state.points||{};state.points[no]=(state.points[no]||0)+1;ui.dirty=true;await save();renderApp();break}
-case'pointMinus':{const no=el.dataset.no;state.points=state.points||{};state.points[no]=Math.max(0,(state.points[no]||0)-1);ui.dirty=true;await save();renderApp();break}
+case'pointPlus':{const id=el.dataset.id||el.dataset.no;const pts=classPoints();if(!pts)break;pts[id]=(pts[id]||0)+1;ui.dirty=true;await save();renderApp();break}
+case'pointMinus':{const id=el.dataset.id||el.dataset.no;const pts=classPoints();if(!pts)break;pts[id]=Math.max(0,(pts[id]||0)-1);ui.dirty=true;await save();renderApp();break}
 case'aiPrep':{const c=currentClass();if(!c)break;const l=bankLessons().find(x=>String(x.no)===String(ui.teachLesson));
   if(!l)return toast('当前课次无词库数据');
   toast('AI 教案草稿生成中…');
@@ -1390,9 +1420,11 @@ case'aiPrep':{const c=currentClass();if(!c)break;const l=bankLessons().find(x=>S
   else toast('请先保存本课备课记录,再生成草稿');
   renderApp()}catch(e){toast('AI 失败:'+e.message)}break}
 case'aiTest':{const f=el.closest('.card');const gv=n=>{const e2=f.querySelector('[name='+n+']');return e2?e2.value.trim():''};
-  const base=gv('base')||state.settings.ai.base||'https://api.deepseek.com',model=gv('model')||state.settings.ai.model||'deepseek-flash',key=gv('key')||state.settings.ai.key||'';
-  if(!key)return toast('请先填写 API Key');toast('测试连接中…');
-  try{const t0=performance.now();await DesktopAI.chatDirect(base,model,key,[{role:'user',content:'你好'}],0);toast('✓ 连接成功(' + Math.round(performance.now()-t0) + 'ms)')}catch(e){toast('✕ 连接失败:'+String(e.message).slice(0,60))}break}
+  state.settings.ai={base:gv('base')||'https://api.deepseek.com',model:gv('model')||'deepseek-flash'};
+  const k=gv('key');if(k){try{await DesktopAI.saveKey(k)}catch(e){return toast('Key 保存失败:'+e.message)}}
+  if(!(await DesktopAI.hasKey()))return toast('请先填写 API Key');
+  toast('测试连接中…');
+  try{const t0=performance.now();await DesktopAI.chat([{role:'user',content:'你好'}],0);toast('✓ 连接成功(' + Math.round(performance.now()-t0) + 'ms)')}catch(e){toast('✕ 连接失败:'+String(e.message).slice(0,60))}break}
 case'saveRecordBtn':{const rf=document.querySelector('form[data-form=record]');if(!rf)break;
   const gv=n2=>{const el=rf.elements.namedItem(n2);return el?String(el.value||'').trim():''};
   rf.querySelectorAll('.field-error').forEach(x=>x.remove());rf.querySelectorAll('.invalid').forEach(x=>x.classList.remove('invalid'));
@@ -1553,7 +1585,8 @@ case'brand':{state.brand={name:formVal(form,'bname')||'语文工作台',slogan:f
 
 case'student':{const c=currentClass(),no=formVal(form,'no'),name=formVal(form,'name');if(!c||!no||!name)return toast('学号和姓名不能为空');if(inClass(state.students).some(x=>x.no===no))return toast('该班学号已存在');state.students.push({id:uid(),classId:c.id,no,name,createdAt:new Date().toISOString()});break}
 case'bankEdit':{const c=currentClass();if(!c||c.grade!==3||c.term!=='上册'||c.bookId)return;const parseRows=(text,kind)=>text.split('\n').map(x=>x.trim()).filter(Boolean).map(x=>{const [value,p]=x.split('|').map(v=>v?.trim()||'');return kind==='char'?{c:value,p}:{w:value,p}});const chars=parseRows(formVal(form,'chars'),'char'),words=parseRows(formVal(form,'words'),'word');if(chars.some(x=>!x.c||!x.p)||words.some(x=>!x.w||!x.p))return toast('每行需要文字和拼音，以 | 分隔');state.bankOverride[ui.teachLesson]={title:formVal(form,'title'),chars,words,conf:'mid'};break}
-case'settings':state.settings.ai={base:formVal(form,'base'),model:formVal(form,'model'),key:formVal(form,'key')};break;
+case'settings':{state.settings.ai={base:formVal(form,'base'),model:formVal(form,'model')};const nk=String(formVal(form,'key')||'').trim();
+  if(nk){try{await DesktopAI.saveKey(nk);toast('API Key 已加密保存(不进入业务数据)')}catch(e){toast('Key 保存失败:'+e.message)}}break;}
 default:return}delete ui.formDrafts[formDraftKey(form)];ui.dirty=Object.keys(ui.formDrafts).length>0;await save();renderApp();toast('已保存')},form)});
 
 function parseCSV(text){text=text.replace(/^\uFEFF/,'');const table=[],row=[];let cell='',quoted=false;for(let i=0;i<text.length;i++){const ch=text[i];if(ch==='"'){if(quoted&&text[i+1]==='"'){cell+='"';i++}else quoted=!quoted}else if(ch===','&&!quoted){row.push(cell);cell=''}else if((ch==='\n'||ch==='\r')&&!quoted){if(ch==='\r'&&text[i+1]==='\n')i++;row.push(cell);cell='';if(row.some(x=>x.trim()))table.push(row.splice(0))}else cell+=ch}if(quoted)throw Error('引号未闭合');row.push(cell);if(row.some(x=>x.trim()))table.push(row);if(!table.length)throw Error('CSV 为空');const head=table.shift().map(x=>x.trim());const noIndex=head.findIndex(x=>['学号','编号','no'].includes(x)),nameIndex=head.findIndex(x=>['姓名','名字','name'].includes(x));if(noIndex<0||nameIndex<0)throw Error('表头必须包含“学号,姓名”');const rows=table.map((r,i)=>({no:(r[noIndex]||'').trim(),name:(r[nameIndex]||'').trim(),line:i+2}));if(rows.some(x=>!x.no||!x.name))throw Error('有空学号或姓名');if(rows.length>2000)throw Error('单次最多导入 2000 人');return rows}
@@ -1642,18 +1675,17 @@ function enhanceSelects(){let all;try{all=document.querySelectorAll('select')}ca
   });
 }
 function tintStatusSelects(){let list;try{list=document.querySelectorAll('select')}catch(e){return}if(!list||typeof list.forEach!=='function')return;list.forEach(s=>{if(!s||!s.classList||!s.dataset)return;const paint=()=>{s.classList.remove('st-ok','st-wait','st-rev');const v=s.value;if(v==='已批'||v==='已上课')s.classList.add('st-ok');else if(v==='未交')s.classList.add('st-wait');else if(v==='待复查'||v==='已讲评')s.classList.add('st-rev')};paint();if(!s.dataset.tint){s.dataset.tint='1';if(typeof s.addEventListener==='function')s.addEventListener('change',paint)}})}
-const DesktopAI={async hasKey(){return window.desktop?Boolean(await window.desktop.ai.getKey()||state.settings.ai&&state.settings.ai.key):Boolean(state.settings.ai&&state.settings.ai.key)},
-async chatDirect(base,model,key,messages,temperature){if(window.desktop)return window.desktop.ai.chat({base,model,key,messages,temperature});const r=await fetch(base.replace(/\/$/,'')+'/chat/completions',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+key},body:JSON.stringify({model,messages,temperature})});if(!r.ok)throw new Error('HTTP '+r.status);return (await r.json()).choices[0].message.content},
+const DesktopAI={
+async hasKey(){try{if(window.desktop)return Boolean(String(await window.desktop.ai.getKey()||'').trim());const d=await aikeyRequest();return Boolean(d.has)}catch(e){return Boolean(state.settings.ai&&state.settings.ai.key)}},
+async saveKey(k){k=String(k||'').trim();if(!k)return;
+  if(window.desktop){await window.desktop.ai.setKey(k);return}
+  await aikeyRequest({method:'POST',body:JSON.stringify({key:k})})},
 async chat(messages,temperature){
-  if(window.desktop)return window.desktop.ai.chat({base:state.settings.ai.base||'https://api.deepseek.com',model:state.settings.ai.model||'deepseek-flash',key:state.settings.ai.key||'',messages,temperature});
+  if(window.desktop){const aip=state.settings.ai||{};return await window.desktop.ai.chat({base:aip.base||'https://api.deepseek.com',model:aip.model||'deepseek-flash',messages,temperature})}
   const aip=state.settings.ai||{};
-  if(aip.key){try{
-    const r=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({base:aip.base||'https://api.deepseek.com',model:aip.model||'deepseek-flash',key:aip.key,messages,temperature:temperature==null?0.5:temperature})});
-    const d=await r.json();
-    if(!r.ok)throw new Error(d.error||('HTTP '+r.status));
-    return d.content;
-  }catch(e){/* 代理失败退直连 */}}
-const ai=state.settings.ai||{};return (await fetch((ai.base||'https://api.deepseek.com').replace(/\/$/,'')+'/chat/completions',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+(ai.key||'')},body:JSON.stringify({model:ai.model||'deepseek-chat',messages,temperature})})).json().then(d=>d.choices[0].message.content)}};
+  const r=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({base:aip.base||'https://api.deepseek.com',model:aip.model||'deepseek-flash',messages,temperature:temperature==null?0.5:temperature})});
+  const d=await r.json();if(!r.ok)throw new Error(d.error||('HTTP '+r.status));return d.content},
+async chatDirect(base,model,key,messages,temperature){if(window.desktop)return window.desktop.ai.chat({base,model,key,messages,temperature});const r=await fetch((base||'https://api.deepseek.com').replace(/\/$/,'')+'/chat/completions',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+key},body:JSON.stringify({model,messages,temperature})});if(!r.ok)throw new Error('HTTP '+r.status);return (await r.json()).choices[0].message.content}};
 document.addEventListener('input',e=>{if(e.target.classList&&e.target.classList.contains('invalid')){e.target.classList.remove('invalid');const fe=e.target.parentElement&&e.target.parentElement.querySelector(':scope>.field-error');if(fe)fe.remove()}});
 document.addEventListener('pointerdown',e=>{const t=e.target.closest('.btn,.nav button,.tabs button,.pick,.chip,.seat');if(!t||matchMedia('(prefers-reduced-motion: reduce)').matches)return;const r=t.getBoundingClientRect();const s=Math.max(r.width,r.height)*1.15;const sp=document.createElement('span');sp.className='ripple';sp.style.width=sp.style.height=s+'px';sp.style.left=(e.clientX-r.left-s/2)+'px';sp.style.top=(e.clientY-r.top-s/2)+'px';t.appendChild(sp);setTimeout(()=>sp.remove(),560)});
 window.addEventListener('keydown',e=>{
