@@ -1,6 +1,6 @@
 {
   "name": "yuwen-workbench",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "小学语文教师桌面工作台",
   "main": "src/main/main.js",
   "scripts": {
