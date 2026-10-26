@@ -24,7 +24,7 @@ jobs:
 
       - name: Install desktop dependencies
         working-directory: chinese/primary/desktop
-        run: npm install
+        run: npm ci
 
       - name: Build renderer (CI mode, no bundled textbooks)
         working-directory: chinese/primary/app
@@ -42,16 +42,33 @@ jobs:
         working-directory: chinese/primary/desktop
         run: npx electron-builder --win --x64 --publish never
 
+      - name: Run release gates
+        env:
+          WB_PUBLIC_PACKAGE: '1'
+        run: python chinese/primary/app/test_release.py
+
+      - name: Generate checksums
+        shell: pwsh
+        run: |
+          Get-ChildItem chinese/primary/desktop/dist/*.exe | ForEach-Object {
+            "$((Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLower())  $($_.Name)"
+          } | Set-Content -Encoding utf8 chinese/primary/desktop/dist/SHA256SUMS.txt
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: windows-installer
-          path: chinese/primary/desktop/dist/*.exe
+          path: |
+            chinese/primary/desktop/dist/*.exe
+            chinese/primary/desktop/dist/SHA256SUMS.txt
 
       - name: Attach to Release (on tag)
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: chinese/primary/desktop/dist/*.exe
+          body_path: chinese/primary/docs/releases/${{ github.ref_name }}.md
+          files: |
+            chinese/primary/desktop/dist/*.exe
+            chinese/primary/desktop/dist/SHA256SUMS.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

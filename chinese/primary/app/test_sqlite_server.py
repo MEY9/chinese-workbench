@@ -93,6 +93,19 @@ class SQLiteTests(unittest.TestCase):
         self.assertEqual(self.request('PUT', '/api/state', dict(state=state, revision=0, mutationId='mutation-1'))[0], 400)
         self.assertIsNone(self.db.read()['state'])
 
+    def test_ai_endpoints_require_session_and_valid_payload(self):
+        for endpoint in ('/api/aikey', '/api/ai'):
+            self.assertEqual(self.request('POST', endpoint, {}, token=False)[0], 403)
+            self.assertEqual(self.request('POST', endpoint, [1, 2])[0], 400)
+        self.assertEqual(self.request('POST', '/api/ai', {'base': 'file:///invalid'})[0], 400)
+        self.assertFalse((self.path.parent / 'ai.key').exists())
+
+    def test_invalid_grade_does_not_change_database(self):
+        state = fixture()
+        state['grades'] = [{'id': 'g1', 'scores': [{'studentId': 's1', 'score': '250'}]}]
+        self.assertEqual(self.request('PUT', '/api/state', dict(state=state, revision=0, mutationId='bad-grade'))[0], 400)
+        self.assertIsNone(self.db.read()['state'])
+
     def test_existing_teacher_acceptance_fixture(self):
         source = ROOT.parent / 'docs' / 'acceptance' / 'fixtures' / 'R1-2班50人.json'
         state = json.loads(source.read_text(encoding='utf-8-sig'))['state']

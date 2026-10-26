@@ -2,7 +2,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
-const code = fs.readFileSync(path.join(__dirname, 'src/app.js'), 'utf8').split("window.addEventListener('beforeunload'")[0];
+const code = fs.readFileSync(path.join(__dirname, 'src/reliability.js'), 'utf8') + '\n' + fs.readFileSync(path.join(__dirname, 'src/app.js'), 'utf8').split("window.addEventListener('beforeunload'")[0];
 function harness(protocol = 'http:') {
   const local = new Map(), faults = {}, mutations = new Map(), app = { innerHTML: '', setAttribute() {} };
   let persisted = null, revision = 0, requests = 0, puts = 0, token = 'token-1';

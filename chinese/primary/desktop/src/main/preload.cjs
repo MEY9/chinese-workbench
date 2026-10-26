@@ -5,11 +5,16 @@ contextBridge.exposeInMainWorld('desktop', {
   platform: process.platform,
   loadState: () => ipcRenderer.invoke('state:load'),
   saveState: (state, expected, mutationId) => ipcRenderer.invoke('state:save', state, expected, mutationId),
+  history: {
+    list: () => ipcRenderer.invoke('history:list'),
+    read: revision => ipcRenderer.invoke('history:read', revision),
+  },
   news: { fetch: () => ipcRenderer.invoke('news:fetch') },
   ai: {
-    getKey: () => ipcRenderer.invoke('ai:key:get'),
+    hasKey: () => ipcRenderer.invoke('ai:key:has'),
     setKey: (k) => ipcRenderer.invoke('ai:key:set', k),
     chat: (payload) => ipcRenderer.invoke('ai:chat', payload),
+    cancel: () => ipcRenderer.invoke('ai:cancel'),
   },
   print: {
     run: (html, opts) => ipcRenderer.invoke('print:run', html, opts),
@@ -17,5 +22,6 @@ contextBridge.exposeInMainWorld('desktop', {
   },
   textbook: {
     open: (file) => ipcRenderer.invoke('textbook:open', file),
+    url: file => ipcRenderer.invoke('textbook:url', file),
   },
 });

@@ -4,7 +4,7 @@ const vm = require('node:vm');
 const path = require('node:path');
 
 const root = __dirname;
-const code = fs.readFileSync(path.join(root, 'src', 'app.js'), 'utf8').split("window.addEventListener('beforeunload'")[0];
+const code = fs.readFileSync(path.join(root, 'src', 'reliability.js'), 'utf8') + '\n' + fs.readFileSync(path.join(root, 'src', 'app.js'), 'utf8').split("window.addEventListener('beforeunload'")[0];
 const bank = JSON.parse(fs.readFileSync(path.join(root, 'bank.json'), 'utf8'));
 const data = new Map();
 const appNode = { innerHTML: '', focus() {} };

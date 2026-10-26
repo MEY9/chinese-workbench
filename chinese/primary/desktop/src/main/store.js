@@ -20,6 +20,13 @@ function countOf(value) {
 
 function validate(state) {
   if (!state || state.version !== 1) throw new Error('数据版本不正确');
+  if (state.settings?.ai?.key) throw new Error('密钥必须先迁移到系统加密存储');
+  for (const key of ['records','reciteLogs','grades','annotations']) {
+    if (state[key] !== undefined && (!Array.isArray(state[key]) || state[key].some(x => !x || typeof x !== 'object' || typeof x.id !== 'string'))) throw new Error(key + ' 结构无效');
+  }
+  for (const row of state.grades || []) {
+    if (!Array.isArray(row.scores) || row.scores.some(x => !x || typeof x.studentId !== 'string' || (!x.absent && x.score !== '' && x.score != null && (!Number.isFinite(Number(x.score)) || Number(x.score)<0 || Number(x.score)>100)))) throw new Error('成绩记录无效');
+  }
   for (const key of COLLECTIONS) {
     const rows = state[key];
     if (!Array.isArray(rows)) throw new Error(key + ' 必须为列表');
@@ -104,7 +111,27 @@ export class Store {
   }
 
   listHistory() {
-    return this.db.prepare('SELECT revision, length(payload) AS bytes FROM history ORDER BY revision DESC').all();
+    return this.db.prepare('SELECT revision, saved_at, length(payload) AS bytes FROM history ORDER BY revision DESC').all();
+  }
+
+  migrateSecrets(persistKey) {
+    const rows = [this.db.prepare('SELECT id AS revision,payload FROM metadata WHERE id=1').get(), ...this.db.prepare('SELECT revision,payload FROM history ORDER BY revision DESC').all()];
+    const parsed = rows.map(row => row.payload ? JSON.parse(row.payload) : null);
+    const key = parsed.find(state => state?.settings?.ai?.key)?.settings.ai.key;
+    if (!key) return;
+    // Persist before stripping any copy. A failure leaves the SQLite state intact.
+    persistKey(String(key));
+    this.db.pragma('secure_delete = ON');
+    this.db.transaction(() => {
+      parsed.forEach((state, i) => {
+        if (!state?.settings?.ai || !Object.hasOwn(state.settings.ai,'key')) return;
+        delete state.settings.ai.key;
+        if(i===0)this.db.prepare('UPDATE metadata SET payload=? WHERE id=1').run(encode(state));
+        else this.db.prepare('UPDATE history SET payload=? WHERE revision=?').run(encode(state),rows[i].revision);
+      });
+    })();
+    this.db.pragma('wal_checkpoint(TRUNCATE)');
+    this.db.exec('VACUUM');
   }
 
   readHistory(revision) {

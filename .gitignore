@@ -21,3 +21,9 @@
 *.log
 .tmp-*/
 D:/Temp/
+
+# 本机回滚备份与独立公开版构建
+chinese/primary/archive/before-*/
+**/dist-public/
+**/.env.*
+!**/.env.example

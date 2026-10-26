@@ -27,9 +27,13 @@ def main() -> None:
             raise RuntimeError("temporary path escaped the app directory")
         (test_root / "src").mkdir()
         (test_root / "textbooks").mkdir()
+        shutil.copytree(ROOT / "vendor", test_root / "vendor")
+        (test_root / "design").mkdir()
+        shutil.copyfile(ROOT / "design" / "logo-b64.txt", test_root / "design" / "logo-b64.txt")
+        shutil.copytree(ROOT / "design" / "book-edition", test_root / "design" / "book-edition")
         for name in ("register_textbook.py", "build.py", "textbook_schema.py", "index.template.html", "bank.json"):
             shutil.copyfile(ROOT / name, test_root / name)
-        for name in ("app.js", "style.css"):
+        for name in ("app.js", "style.css", "reliability.js"):
             shutil.copyfile(ROOT / "src" / name, test_root / "src" / name)
         (test_root / "textbooks-manifest.json").write_text('{"schemaVersion":1,"books":[]}', encoding="utf-8")
         source = test_root / "source.pdf"

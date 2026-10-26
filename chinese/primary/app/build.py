@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import os
+import base64
 
 import hashlib
 import json
@@ -28,7 +29,7 @@ def inline_json(value: object) -> str:
 def build() -> None:
     template = (ROOT / "index.template.html").read_text(encoding="utf-8")
     css = (ROOT / "src" / "style.css").read_text(encoding="utf-8")
-    js = (ROOT / "src" / "app.js").read_text(encoding="utf-8")
+    js = (ROOT / "src" / "reliability.js").read_text(encoding="utf-8") + "\n" + (ROOT / "src" / "app.js").read_text(encoding="utf-8")
     bank = json.loads((ROOT / "bank.json").read_text(encoding="utf-8"))
     if not isinstance(bank.get("lessons"), list):
         raise ValueError("bank.json: lessons must be a list")
@@ -74,6 +75,13 @@ def build() -> None:
     pdfjs_lib = pdfjs_lib.replace("</script", "<\\/script")
     pdfjs_worker = pdfjs_worker.replace("</script", "<\\/script")
     logo_b64 = (ROOT / 'design' / 'logo-b64.txt').read_text(encoding='utf-8').strip()
+    illustration_dir = ROOT / 'design' / 'book-edition'
+    illustrations = {}
+    for token, filename in [('__BOOK_LANDSCAPE__', 'reading-landscape-v1.webp'), ('__BOOK_COMPANION__', 'reading-companion-v1.webp'), ('__BOOK_GRIMOIRE__', 'grimoire-v1.webp')]:
+        asset = illustration_dir / filename
+        if not asset.is_file():
+            raise ValueError(f'Missing book illustration: {filename}')
+        illustrations[token] = 'data:image/webp;base64,' + base64.b64encode(asset.read_bytes()).decode('ascii')
     output = (
         template.replace("__CSS__", css)
         .replace("__JS__", js)
@@ -83,7 +91,9 @@ def build() -> None:
         .replace("<!--PDFJS_LIB-->", "<script>" + pdfjs_lib + "</script>")
         .replace("<!--PDFJS_WORKER-->", '<script type="text/plain" id="pdfjsWorkerCode">' + pdfjs_worker + "</script>")
     )
-    if any(token in output for token in ("__CSS__", "__JS__", "__BANK__", "__TEXTBOOKS__", "PDFJS_LIB", "PDFJS_WORKER", "__LOGO_B64__")):
+    for token, data_uri in illustrations.items():
+        output = output.replace(token, data_uri)
+    if any(token in output for token in ("__CSS__", "__JS__", "__BANK__", "__TEXTBOOKS__", "PDFJS_LIB", "PDFJS_WORKER", "__LOGO_B64__", "__BOOK_LANDSCAPE__", "__BOOK_COMPANION__", "__BOOK_GRIMOIRE__")):
         raise ValueError("unresolved build placeholder")
     target_html = ROOT / "index.html"
     target_html.write_text(output, encoding="utf-8", newline="\n")

@@ -1,6 +1,8 @@
 """Local-only teacher workbench with transactional SQLite storage (stdlib only)."""
 from __future__ import annotations
 
+import os
+
 import argparse
 import hashlib
 import json
@@ -46,7 +48,7 @@ def fetch_news():
             payload = None
             d = data.get('data')
             if isinstance(d, dict) and isinstance(d.get('news'), list) and d['news']:
-                payload = {'date': str(d['data'].get('date') or today), 'news': [str(x) for x in d['data']['news']], 'source': host}
+                payload = {'date': str(d.get('date') or today), 'news': [str(x) for x in d['news']], 'source': host}
             elif isinstance(d, list) and d:
                 payload = {'date': str(data.get('time') or today)[:10], 'news': [str(x) for x in d], 'source': host}
             if payload:
@@ -94,6 +96,25 @@ def validate(state):
             raise ValueError(f'{key} 格式错误')
     if 'ai' in state['settings'] and not isinstance(state['settings']['ai'], dict):
         raise ValueError('AI 配置格式错误')
+    for key in ('records', 'reciteLogs', 'grades', 'annotations'):
+        rows = state.get(key, [])
+        if not isinstance(rows, list) or any(not isinstance(row, dict) or not isinstance(row.get('id'), str) for row in rows):
+            raise ValueError(f'{key} 记录格式无效')
+    for row in state.get('grades', []):
+        if not isinstance(row.get('scores'), list):
+            raise ValueError('成绩记录格式无效')
+        for score in row['scores']:
+            if not isinstance(score, dict) or not isinstance(score.get('studentId'), str):
+                raise ValueError('学生成绩格式无效')
+            if not score.get('absent') and score.get('score') not in ('', None):
+                try:
+                    if not 0 <= float(score['score']) <= 100:
+                        raise ValueError('分数须在 0 至 100 之间')
+                except (ValueError, TypeError):
+                    raise ValueError('分数须在 0 至 100 之间')
+    for key in ('aiCache', 'reportCards', 'pointsByClass', 'seatsByClass', 'reciteTexts', 'bookLessons'):
+        if key in state and not isinstance(state[key], dict):
+            raise ValueError(f'{key} 格式无效')
     def texts(row, fields):
         if any(key in row and not isinstance(row[key], str) for key in fields):
             raise ValueError('文本字段格式错误')
@@ -217,8 +238,43 @@ class Database:
             state, revision = self._read(db)
             return {'state': state, 'revision': revision, 'storage': 'SQLite'}
 
+    def history_list(self):
+        with closing(self.connect()) as db:
+            return [dict(revision=r[0], saved_at=r[1]) for r in db.execute('SELECT revision,saved_at FROM history ORDER BY revision DESC')]
+
+    def history_read(self, revision):
+        with closing(self.connect()) as db:
+            row = db.execute('SELECT payload FROM history WHERE revision=?', (revision,)).fetchone()
+            if not row:
+                return None
+            state = json.loads(row[0])
+            missing = [key for key in COLLECTIONS if not isinstance(state.get(key), list)]
+            return dict(revision=revision, state=state, intact=not missing, missingCollections=missing)
+
+    def migrate_secrets(self, persist_key):
+        with closing(self.connect()) as db:
+            rows = [('metadata', 1, db.execute('SELECT payload FROM metadata WHERE id=1').fetchone()[0])]
+            rows += [('history', rev, payload) for rev, payload in db.execute('SELECT revision,payload FROM history ORDER BY revision DESC')]
+            parsed = [(table, rev, json.loads(payload)) for table, rev, payload in rows if payload]
+            key = next((state.get('settings', {}).get('ai', {}).get('key') for _, _, state in parsed if state.get('settings', {}).get('ai', {}).get('key')), None)
+            if not key:
+                return
+            persist_key(str(key))
+            db.execute('PRAGMA secure_delete=ON')
+            with db:
+                for table, rev, state in parsed:
+                    ai = state.get('settings', {}).get('ai', {})
+                    if 'key' in ai:
+                        del ai['key']
+                        column = 'id' if table == 'metadata' else 'revision'
+                        db.execute(f'UPDATE {table} SET payload=? WHERE {column}=?', (encode(state), rev))
+            db.execute('PRAGMA wal_checkpoint(TRUNCATE)')
+            db.execute('VACUUM')
+
     def write(self, state, expected, mutation):
         validate(state)
+        if state.get('settings', {}).get('ai', {}).get('key'):
+            raise ValueError('密钥必须先迁移到系统加密存储')
         if type(expected) is not int or expected < 0 or not isinstance(mutation, str) or not 8 <= len(mutation) <= 128:
             raise ValueError('保存版本或操作标识无效')
         payload = encode(state)
@@ -298,7 +354,15 @@ class Handler(BaseHTTPRequestHandler):
         if path == '/api/aikey':
             if not self.allowed(True):
                 return
-            return self.reply(200, {'has': bool(read_server_ai_key())})
+            return self.reply(200, {'has': bool(read_server_ai_key(self.server.database.path.parent / 'ai.key'))})
+        if path == '/api/history' or path.startswith('/api/history/'):
+            if not self.allowed(True):
+                return
+            try:
+                result = self.server.database.history_list() if path == '/api/history' else self.server.database.history_read(int(path.rsplit('/', 1)[1]))
+                return self.reply(200, result)
+            except (ValueError, sqlite3.Error):
+                return self.reply(400, {'error': '历史版本无法读取'})
         if path == '/api/news':
             news = fetch_news()
             if news:
@@ -308,8 +372,10 @@ class Handler(BaseHTTPRequestHandler):
             if not self.allowed(True):
                 return
             try:
+                key_path = self.server.database.path.parent / 'ai.key'
+                self.server.database.migrate_secrets(lambda key: write_server_ai_key(key, key_path) if not read_server_ai_key(key_path) else None)
                 return self.reply(200, self.server.database.read())
-            except sqlite3.Error:
+            except (sqlite3.Error, OSError, RuntimeError):
                 return self.reply(503, {'error': 'SQLite 读取失败，请保留数据库文件并重试'})
         file = ROOT / 'index.html' if path in ('/', '/index.html') else ROOT / path.lstrip('/')
         file = file.resolve()
@@ -353,33 +419,53 @@ class Handler(BaseHTTPRequestHandler):
                     break
                 self.wfile.write(block); remaining -= len(block)
 
+    def read_json_body(self, limit):
+        size = int(self.headers.get('Content-Length', '0'))
+        if not 0 < size <= limit:
+            raise ValueError('请求大小超出限制')
+        value = json.loads(self.rfile.read(size))
+        if not isinstance(value, dict):
+            raise ValueError('请求必须是 JSON 对象')
+        return value
+
     def do_POST(self):
         if not self.allowed():
             return
         path = unquote(urlsplit(self.path).path)
         if path == '/api/aikey' and self.command == 'POST':
-            size = int(self.headers.get('Content-Length', '0'))
-            if not 0 < size <= 4096:
-                return self.reply(413, {'error': '请求过大'})
-            req = json.loads(self.rfile.read(size))
+            if not self.allowed(True):
+                return
+            try:
+                req = self.read_json_body(4096)
+            except (ValueError, UnicodeError):
+                return self.reply(400, {'error': '请求格式或大小不正确'})
             key = str(req.get('key') or '').strip()
             if not key:
                 return self.reply(400, {'error': '缺少 Key'})
-            AI_KEY_PATH.parent.mkdir(parents=True, exist_ok=True)
-            AI_KEY_PATH.write_text(key, encoding='utf-8')
+            try:
+                write_server_ai_key(key, self.server.database.path.parent / 'ai.key')
+            except (OSError, RuntimeError):
+                return self.reply(503, {'error': '系统加密保存失败，原密钥未被移除'})
             return self.reply(200, {'ok': True})
         if path == '/api/ai' and self.command == 'POST':
-            size = int(self.headers.get('Content-Length', '0'))
-            if not 0 < size <= 1024 * 1024:
-                return self.reply(413, {'error': '请求过大'})
-            req = json.loads(self.rfile.read(size))
+            if not self.allowed(True):
+                return
+            try:
+                req = self.read_json_body(1024 * 1024)
+            except (ValueError, UnicodeError):
+                return self.reply(400, {'error': '请求格式或大小不正确'})
             base = str(req.get('base') or 'https://api.deepseek.com').replace('/chat/completions', '').rstrip('/')
+            if urlsplit(base).scheme not in ('http', 'https') or not urlsplit(base).netloc:
+                return self.reply(400, {'error': 'AI 服务地址必须为 HTTP 或 HTTPS 地址'})
             model = str(req.get('model') or 'deepseek-flash')
             # 请求不带 Key 时回退到服务端加密目录存储的 Key(避免 Key 进入业务状态/备份)
-            key = str(req.get('key') or '') or read_server_ai_key()
+            try:
+                key = read_server_ai_key(self.server.database.path.parent / 'ai.key')
+            except (OSError, RuntimeError):
+                return self.reply(503, {'error': '系统密钥不可用，请检查加密设置'})
             messages = req.get('messages')
             temperature = req.get('temperature', 0.5)
-            if not key or not isinstance(messages, list):
+            if not key or not isinstance(messages, list) or not messages:
                 return self.reply(400, {'error': '未配置 AI Key,请先在设置里保存'})
             body = json.dumps({'model': model, 'messages': messages, 'temperature': temperature, 'stream': False}).encode('utf-8')
             r2 = urllib.request.Request(base + '/chat/completions', data=body, headers={'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key})
@@ -388,9 +474,9 @@ class Handler(BaseHTTPRequestHandler):
                     out = json.loads(resp.read().decode('utf-8'))
                 return self.reply(200, {'content': out['choices'][0]['message']['content']})
             except urllib.error.HTTPError as e:
-                return self.reply(502, {'error': 'AI HTTP %d: %s' % (e.code, e.read().decode('utf-8', 'ignore')[:200])})
-            except Exception as e:
-                return self.reply(502, {'error': 'AI 请求失败: %s' % e})
+                return self.reply(502, {'error': 'AI HTTP %d，请检查服务配置或稍后重试' % e.code})
+            except Exception:
+                return self.reply(502, {'error': 'AI 请求失败，请检查服务地址、模型和网络后重试'})
         self.reply(404, {'error': '接口不存在'})
 
     def do_PUT(self):
@@ -420,11 +506,53 @@ class Handler(BaseHTTPRequestHandler):
 AI_KEY_PATH = ROOT / 'data' / 'ai.key'
 
 
-def read_server_ai_key():
+def crypt_key(data, decrypt=False):
+    """Windows DPAPI: no plaintext key files or additional crypto dependency."""
+    import ctypes
+    from ctypes import wintypes
+    if os.name != 'nt':
+        raise RuntimeError('本机服务密钥加密需要 Windows；其他平台请使用桌面版')
+    class Blob(ctypes.Structure):
+        _fields_ = [('size', wintypes.DWORD), ('data', ctypes.POINTER(ctypes.c_ubyte))]
+    buf = ctypes.create_string_buffer(data)
+    source = Blob(len(data), ctypes.cast(buf, ctypes.POINTER(ctypes.c_ubyte)))
+    target = Blob()
+    crypt = ctypes.WinDLL('crypt32', use_last_error=True)
+    kernel = ctypes.WinDLL('kernel32', use_last_error=True)
+    kernel.LocalFree.argtypes = [ctypes.c_void_p]
+    kernel.LocalFree.restype = ctypes.c_void_p
+    method = crypt.CryptUnprotectData if decrypt else crypt.CryptProtectData
+    method.argtypes = [ctypes.POINTER(Blob), ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p, wintypes.DWORD, ctypes.POINTER(Blob)]
+    method.restype = wintypes.BOOL
+    if not method(ctypes.byref(source), None, None, None, None, 1, ctypes.byref(target)):
+        raise RuntimeError('系统加密操作失败')
     try:
-        return AI_KEY_PATH.read_text(encoding='utf-8').strip()
-    except OSError:
+        return ctypes.string_at(target.data, target.size)
+    finally:
+        kernel.LocalFree(target.data)
+
+
+def write_server_ai_key(key, path=AI_KEY_PATH):
+    data = b'WBKEY1\x00' + crypt_key(key.encode('utf-8'))
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix('.pending')
+    temporary.write_bytes(data)
+    temporary.replace(path)
+
+
+def read_server_ai_key(path=AI_KEY_PATH):
+    path = Path(path)
+    if not path.exists():
         return ''
+    data = path.read_bytes()
+    if data.startswith(b'WBKEY1\x00'):
+        return crypt_key(data[7:], decrypt=True).decode('utf-8')
+    # Upgrade the pre-encryption service key atomically, never discard on failure.
+    key = data.decode('utf-8').strip()
+    if key:
+        write_server_ai_key(key, path)
+    return key
 
 
 def main():

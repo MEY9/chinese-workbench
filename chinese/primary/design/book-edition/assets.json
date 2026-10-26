@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-26",
+  "mode": "user-configured OpenAI-compatible API via imagegen CLI",
+  "model": "gpt-image-2.5",
+  "prompts": "prompts.jsonl",
+  "assets": [
+    {
+      "name": "reading-landscape-v1",
+      "source": "output\\imagegen\\book-edition\\reading-landscape-v1.png",
+      "file": "app\\design\\book-edition\\reading-landscape-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 192304,
+      "sha256": "e826cf76d7f421dd048d7b51cb8686ace25fc4439cf0f429c7b9cb92dffbe724"
+    },
+    {
+      "name": "reading-companion-v1",
+      "source": "output\\imagegen\\book-edition\\reading-companion-v1.png",
+      "file": "app\\design\\book-edition\\reading-companion-v1.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 145740,
+      "sha256": "76000d2e50abfee6b4f1756930dcf6f256d9238ad0d6689051b7ad38be92f69e"
+    },
+    {
+      "name": "grimoire-v1",
+      "source": "output/imagegen/book-edition/grimoire-v1.png",
+      "file": "app/design/book-edition/grimoire-v1.webp",
+      "prompt": "grimoire-prompt.txt",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 215992,
+      "sha256": "790ad43b8d2e2dce34bd3b4260ca2c89ac02d4425930114d97a28d6578b18b7e"
+    }
+  ]
+}

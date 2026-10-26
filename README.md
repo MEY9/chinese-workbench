@@ -10,8 +10,8 @@
 ## 快速开始(教师)
 
 1. 到 [Releases](../../releases) 下载安装包,双击安装:
-   - **`Setup-x.x.x-full-with-textbooks.exe`(推荐)**:完整版,**已内置 12 册统编版语文教材 PDF**(1–6 年级上下册,人教社),装完即用
-   - `Setup.x.x.x.exe`:精简版(81MB,不含教材 PDF)
+   - 当前公开安装包适用于 Windows x64，不包含教材 PDF；教材可在本机导入。
+   - 版本变更与验证范围见 [v3.0.8 发布说明](chinese/primary/docs/releases/v3.0.8.md)。
 2. 打开应用 →「班级」建立班级、下载名册模板、导入学生
 3. (可选)「设置」填入 DeepSeek API Key 启用 AI 功能
 
@@ -36,6 +36,7 @@ npm start
 ```bash
 cd chinese/primary/desktop
 npm install
+# 没有教材 PDF 时，先设置 WB_CI=1 并运行 python ../app/build.py
 npx electron-builder --win --x64
 # 产物在 dist/
 ```
