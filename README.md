@@ -10,7 +10,7 @@
 ## 快速开始(教师)
 
 1. 到 [Releases](../../releases) 下载安装包,双击安装:
-   - 当前公开安装包适用于 Windows x64，不包含教材 PDF；教材可在本机导入。
+   - 正式安装包适用于 Windows x64，默认内置教材 PDF；当前包含人教社统编版 1–6 年级上下册，共 12 册。
    - 版本变更与验证范围见 [v3.0.8 发布说明](chinese/primary/docs/releases/v3.0.8.md)。
 2. 打开应用 →「班级」建立班级、下载名册模板、导入学生
 3. (可选)「设置」填入 DeepSeek API Key 启用 AI 功能
@@ -76,3 +76,7 @@ npx electron-builder --win --x64
 | 小红书 **AI工作台** | 公众号 **见山知文** |
 |:---:|:---:|
 | <img src="docs/media/xhs.jpg" width="200"/> | <img src="docs/media/gzh.jpg" width="200"/> |
+
+## 正式发布规则
+
+用户已明确要求：今后正式 EXE 安装包默认包含教材 PDF，不得以无教材版代替。先运行 `python chinese/primary/desktop/package-release.py`，该脚本构建完整包、运行检查并生成校验文件。发布 `desktop/dist/release/` 中当前版本的完整安装包。详细规则见 [发布约定](chinese/primary/docs/releases/发布约定.md)。GitHub Actions 只检查无教材源码构建，不会自动发布精简版。

@@ -10,7 +10,7 @@
 *.sqlite3-wal
 *.sqlite3-shm
 
-# 教材 PDF(版权文件,不入公共仓库;本地构建自行放置)
+# 教材 PDF 不入源码仓库；正式安装包按发布约定内置教材
 **/textbooks/*.pdf
 **/resources/textbooks/*.pdf
 

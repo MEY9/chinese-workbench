@@ -20,6 +20,11 @@ if(process.env.WB_PUBLIC_PACKAGE === '1'){
   const pdfFiles=fs.readdirSync(resourceDir,{recursive:true}).filter(file=>file.toLowerCase().endsWith('.pdf'));
   assert.equal(pdfFiles.length,0,'Public installer must not include textbook PDFs');
 }
+if(process.env.WB_PUBLIC_PACKAGE !== '1'){
+  assert.ok(books.length>0,'Full release requires a non-empty textbook manifest');
+  const actual=fs.readdirSync(path.join(packageDir,'win-unpacked/resources/textbooks')).filter(file=>file.toLowerCase().endsWith('.pdf')).sort();
+  assert.deepEqual(actual,books.map(book=>book.file).sort(),'Bundled PDFs must exactly match the manifest');
+}
 for(const book of books){
   const pdf=fs.readFileSync(path.join(packageDir,'win-unpacked/resources/textbooks',book.file));
   assert.equal(crypto.createHash('sha256').update(pdf).digest('hex'),book.sha256);
