@@ -7,6 +7,7 @@ import sqlite3
 import tempfile
 import threading
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 from server import Database, Server, COLLECTIONS, Conflict, ROOT
 
@@ -122,8 +123,12 @@ class SQLiteTests(unittest.TestCase):
         for path in ['/data/workbench.sqlite3', '/server.py', '/../server.py', '/%2e%2e/server.py']:
             self.assertEqual(self.request('GET', path)[0], 404)
         self.assertEqual(self.request('GET', '/')[0], 200)
-        pdf = next((ROOT / 'textbooks').glob('*.pdf'))
-        status, body, headers = self.request('GET', '/textbooks/' + pdf.name, headers={'Range': 'bytes=0-4'})
+        # Static range behavior must not depend on untracked real textbooks.
+        static_root = Path(self.temp.name) / 'static'
+        (static_root / 'textbooks').mkdir(parents=True)
+        (static_root / 'textbooks' / 'fixture.pdf').write_bytes(b'%PDF-1.4\nsynthetic range fixture\n%%EOF')
+        with patch('server.ROOT', static_root):
+            status, body, headers = self.request('GET', '/textbooks/fixture.pdf', headers={'Range': 'bytes=0-4'})
         self.assertEqual(status, 206)
         self.assertEqual(body, b'%PDF-')
         self.assertTrue(headers['Content-Range'].startswith('bytes 0-4/'))
