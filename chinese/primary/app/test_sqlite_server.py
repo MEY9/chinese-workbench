@@ -124,7 +124,7 @@ class SQLiteTests(unittest.TestCase):
             self.assertEqual(self.request('GET', path)[0], 404)
         self.assertEqual(self.request('GET', '/')[0], 200)
         # Static range behavior must not depend on untracked real textbooks.
-        static_root = Path(self.temp.name) / 'static'
+        static_root = (Path(self.temp.name) / 'static').resolve()
         (static_root / 'textbooks').mkdir(parents=True)
         (static_root / 'textbooks' / 'fixture.pdf').write_bytes(b'%PDF-1.4\nsynthetic range fixture\n%%EOF')
         with patch('server.ROOT', static_root):
