@@ -929,7 +929,7 @@ async function exportRecovery(source){
 function speakWords(){const c=currentClass();if(!c||c.grade!==3||c.term!=='上册'||c.bookId)return toast('当前教材尚无词库');const words=bankLessons().find(x=>String(x.no)===String(ui.teachLesson))?.words||[];if(!words.length)return toast('没有词语');if(!('speechSynthesis'in window)||!('SpeechSynthesisUtterance'in window))return toast('系统语音不可用');const voice=speechSynthesis.getVoices().find(v=>/^zh/i.test(v.lang));if(!voice)return toast('未找到中文语音');let i=0;speechSynthesis.cancel();const next=()=>{if(i>=words.length)return toast('朗读完毕');const utterance=new SpeechSynthesisUtterance(words[i++].w);utterance.voice=voice;utterance.lang='zh-CN';utterance.rate=.7;utterance.onend=()=>setTimeout(next,450);utterance.onerror=()=>toast('朗读失败');speechSynthesis.speak(utterance)};next()}
 function printHeader(title,meta,recordDate=today()){const c=currentClass();return `<div class="print-title">${E(title)}</div><div class="print-meta"><span>班级：${E(c?.name||'________')}</span><span>${E(meta||'')}</span><span>日期：${E(recordDate||today())}</span></div>`}
 const NB_COLORS=['#3157D4','#AF1D88'];
-function enhanceSelects(){}
+function enhanceSelects(){window.WorkbenchSelects?.enhance()}
 function tintStatusSelects(){let list;try{list=document.querySelectorAll('select')}catch(e){return}if(!list||typeof list.forEach!=='function')return;list.forEach(s=>{if(!s||!s.classList||!s.dataset)return;const paint=()=>{s.classList.remove('st-ok','st-wait','st-rev');const v=s.value;if(v==='已批'||v==='已上课')s.classList.add('st-ok');else if(v==='未交')s.classList.add('st-wait');else if(v==='待复查'||v==='已讲评')s.classList.add('st-rev')};paint();if(!s.dataset.tint){s.dataset.tint='1';if(typeof s.addEventListener==='function')s.addEventListener('change',paint)}})}
 const DesktopAI={
 async hasKey(){if(window.desktop)return Boolean(await window.desktop.ai.hasKey());const result=await aikeyRequest();return Boolean(result.has)},
@@ -980,11 +980,11 @@ function tzWord(w,p){const ps=(p||'').trim().split(/\s+/);const ok=!!p&&ps.lengt
 function uiModalShell(inner){
   const previous=document.activeElement,m=document.createElement('div');
   m.className='modal-mask';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');
-  m.innerHTML=inner;document.body.appendChild(m);
+  m.innerHTML=inner;document.body.appendChild(m);enhanceSelects();
   m._restoreFocus=()=>{if(previous?.isConnected&&typeof previous.focus==='function')previous.focus()};
   m.addEventListener('keydown',e=>{
     if(e.key!=='Tab')return;
-    const items=[...m.querySelectorAll('button,a[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(x=>!x.disabled);
+    const items=[...m.querySelectorAll('button,a[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(x=>!x.disabled&&!x.hidden&&x.tabIndex!==-1&&!x.classList.contains('book-select-native'));
     if(!items.length)return;
     if(e.shiftKey&&document.activeElement===items[0]){e.preventDefault();items.at(-1).focus()}
     else if(!e.shiftKey&&document.activeElement===items.at(-1)){e.preventDefault();items[0].focus()}

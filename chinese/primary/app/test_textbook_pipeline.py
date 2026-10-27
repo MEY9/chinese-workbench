@@ -33,7 +33,7 @@ def main() -> None:
         shutil.copytree(ROOT / "design" / "book-edition", test_root / "design" / "book-edition")
         for name in ("register_textbook.py", "build.py", "textbook_schema.py", "index.template.html", "bank.json"):
             shutil.copyfile(ROOT / name, test_root / name)
-        for name in ("app.js", "style.css", "reliability.js"):
+        for name in ("app.js", "style.css", "reliability.js", "selects.js"):
             shutil.copyfile(ROOT / "src" / name, test_root / "src" / name)
         (test_root / "textbooks-manifest.json").write_text('{"schemaVersion":1,"books":[]}', encoding="utf-8")
         source = test_root / "source.pdf"

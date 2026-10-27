@@ -844,3 +844,41 @@ select{appearance:auto;background:var(--paper);padding-right:12px;cursor:pointer
 }
 @media screen and (max-width:1200px){.brand{font-size:14px}.book-heading h1{font-size:28px}.nav button{font-size:13px}.settings-index nav small{font-size:11px}}
 @media screen and (max-width:720px){.book-heading h1{font-size:26px}.book-heading .lead{font-size:13px}.nav button{font-size:13px}.setting-section-head h2{font-size:20px}.page[data-view=classroom] [data-act=rollMode] b{font-size:16px}.chapter-kicker{font-size:11px}}
+
+/* Unified hard-paper selection controls. The native select still owns form values. */
+@media screen{
+  .book-select{display:inline-flex;position:relative;vertical-align:middle;min-width:0;max-width:100%;width:100%;-webkit-app-region:no-drag}
+  select.book-select-native{position:absolute!important;width:1px!important;height:1px!important;min-height:0!important;padding:0!important;margin:0!important;border:0!important;opacity:0!important;clip-path:inset(50%);pointer-events:none}
+  .book-select-trigger{display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative;width:100%;min-width:0;min-height:44px;padding:10px 14px;border:1px solid var(--line-strong);border-bottom-width:3px;border-radius:7px;color:var(--ink);background:linear-gradient(180deg,var(--paper),var(--book-paper,var(--well)));box-shadow:inset 0 1px 0 var(--paper),0 2px 0 color-mix(in srgb,var(--ink) 5%,transparent);font-family:var(--font-ui);font-size:14px;font-weight:400;line-height:1.6;text-align:left;cursor:pointer;transition:background .15s,border-color .15s,box-shadow .15s;-webkit-app-region:no-drag}
+  .book-select-trigger:hover:not(:disabled){border-color:color-mix(in srgb,var(--sky) 60%,var(--line-strong));background:var(--paper)}
+  .book-select-trigger:focus-visible,.book-select-trigger[aria-expanded=true]{outline:0;border-color:var(--sky);box-shadow:0 0 0 3px color-mix(in srgb,var(--sky) 14%,transparent),inset 0 1px 0 var(--paper)}
+  .book-select-value{display:block;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  .book-select-arrow{flex:none;width:8px;height:8px;border-right:2px solid var(--sky);border-bottom:2px solid var(--sky);transform:translateY(-2px) rotate(45deg);transition:transform .15s}
+  .book-select-trigger[aria-expanded=true] .book-select-arrow{transform:translateY(2px) rotate(225deg)}
+  .book-select-trigger:disabled{cursor:not-allowed;color:var(--ink2);background:var(--well);box-shadow:none;opacity:.65}
+  .book-select-trigger[aria-invalid=true]{border-color:var(--coral);box-shadow:0 0 0 3px color-mix(in srgb,var(--coral) 12%,transparent)}
+  .book-select-trigger.st-ok{color:var(--grass);border-color:color-mix(in srgb,var(--grass) 45%,var(--line));background:var(--grass-bg)}
+  .book-select-trigger.st-wait,.book-select-trigger.st-rev{color:var(--coral);border-color:color-mix(in srgb,var(--coral) 40%,var(--line));background:var(--coral-bg)}
+  .topbar>.book-select{width:auto;min-width:210px;max-width:340px;flex:0 1 340px}
+  .topbar .book-select-trigger{font-size:13px;font-weight:500;background:var(--sky-bg)}
+  .field>.book-select{display:flex;margin-top:0}
+  td>.book-select{min-width:105px}
+  td .book-select-trigger{min-height:38px;padding:6px 10px;font-size:13px;gap:12px}
+  .book-select-menu{position:fixed;inset:auto;margin:0;z-index:100000;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;padding:7px;border:1px solid var(--line-strong);border-bottom:4px solid color-mix(in srgb,var(--ink) 22%,var(--paper));border-radius:9px;background:linear-gradient(135deg,var(--paper),var(--book-paper,var(--well)));color:var(--ink);box-shadow:0 3px 0 -1px var(--paper),0 5px 0 -1px var(--line-strong),0 14px 35px color-mix(in srgb,var(--ink) 22%,transparent);font-family:var(--font-ui);font-size:14px;font-weight:400;line-height:1.6;isolation:isolate;-webkit-app-region:no-drag}
+  .book-select-menu::before{content:'';position:absolute;left:7px;top:12px;bottom:12px;width:2px;background:color-mix(in srgb,var(--sky) 15%,var(--paper));pointer-events:none}
+  .book-select-search{flex:none!important;width:100%!important;min-height:38px!important;padding:8px 11px!important;margin:0 0 7px!important;border-radius:5px!important;font-size:13px!important;background:var(--paper)!important}
+  .book-select-search[hidden],.book-select-empty[hidden]{display:none!important}
+  .book-select-options{min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent;padding:2px 2px 2px 5px}
+  .book-select-option{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:39px;padding:8px 11px;margin:2px 0;border:1px solid transparent;border-radius:5px;cursor:pointer;user-select:none}
+  .book-select-option-label{min-width:0;overflow-wrap:anywhere}
+  .book-select-option[aria-selected=true]{color:var(--sky);background:var(--sky-bg);font-weight:500;box-shadow:inset 3px 0 0 var(--sky)}
+  .book-select-option.is-active,.book-select-option:hover:not([aria-disabled=true]){background:color-mix(in srgb,var(--sky) 10%,var(--paper));border-color:color-mix(in srgb,var(--sky) 25%,var(--line))}
+  .book-select-option[aria-disabled=true]{opacity:.4;cursor:not-allowed;box-shadow:none}
+  .book-select-check{flex:none;width:16px;text-align:center;color:var(--sky);font-weight:700}
+  .book-select-group{padding:10px 12px 4px;color:var(--ink2);font-size:12px;font-weight:500;border-top:1px solid var(--line);margin-top:5px}
+  .book-select-empty{padding:20px 12px;color:var(--ink2);text-align:center;font-size:13px}
+}
+@media screen and (max-width:720px){.topbar>.book-select{min-width:0;max-width:100%;flex:1}.book-select-trigger{gap:12px}.book-select-option{min-height:44px}}
+@media (prefers-reduced-motion:reduce){.book-select-trigger,.book-select-arrow{transition:none}}
+@media (forced-colors:active){.book-select-trigger,.book-select-menu{border:1px solid ButtonText}.book-select-option[aria-selected=true]{outline:2px solid Highlight}.book-select-option.is-active{outline:1px dashed Highlight}}
+@media print{.book-select-trigger,.book-select-menu{display:none!important}.book-select-native{position:static!important;opacity:1!important;clip-path:none!important}}

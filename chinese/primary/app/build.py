@@ -29,7 +29,7 @@ def inline_json(value: object) -> str:
 def build() -> None:
     template = (ROOT / "index.template.html").read_text(encoding="utf-8")
     css = (ROOT / "src" / "style.css").read_text(encoding="utf-8")
-    js = (ROOT / "src" / "reliability.js").read_text(encoding="utf-8") + "\n" + (ROOT / "src" / "app.js").read_text(encoding="utf-8")
+    js = (ROOT / "src" / "selects.js").read_text(encoding="utf-8") + "\n" + (ROOT / "src" / "reliability.js").read_text(encoding="utf-8") + "\n" + (ROOT / "src" / "app.js").read_text(encoding="utf-8")
     bank = json.loads((ROOT / "bank.json").read_text(encoding="utf-8"))
     if not isinstance(bank.get("lessons"), list):
         raise ValueError("bank.json: lessons must be a list")
